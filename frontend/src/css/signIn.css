@@ -1,0 +1,52 @@
+div.home{
+    height:70vh;
+    width:68vw;
+    margin-top:10vh;
+    margin-left: 15vw;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding:8px;
+}
+#login{
+    color: black;
+    font-weight: bold;
+}
+#info{
+    background-color: #f1cd6d;
+    border-radius: 10px;
+    color:white;
+}
+h3{
+    margin-top:10vh !important;
+}
+p{
+    margin-top: 10% !important;
+    font-size: larger !important;    
+}
+h2{
+    margin-bottom: 10%;
+}
+input#userid,input#password{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+div button{
+    background-color: #f1cd6d;
+    padding-left:10%;
+    padding-right: 10%;
+    border: none;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    color: white;
+    border-radius: 2%;
+    margin-top: 5%;
+}
+div button:hover{
+    transform: scale(1.2);
+    transition: all 1s;
+}
+#login span{
+    color:blue;
+    font-weight: 500;
+}
