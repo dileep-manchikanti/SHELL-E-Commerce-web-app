@@ -1,0 +1,52 @@
+.img{
+    height:100vh !important;
+    width: 395px !important;
+    background-image: url('../components/Rectangle\ 9.jpg') !important;
+    background-position: center;
+    text-align: center;
+}
+#signUp{
+    background-color: white;
+    margin: 0px !important;
+    padding: 0px;
+}
+h3{
+    color: #FFF !important;
+    font-family: Outfit;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 30% !important;
+}
+p#info{
+    margin-top: 30% !important;
+    color:white;
+    font-family: Outfit;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.details{
+    padding-left: 40px !important;
+    padding-right: 10px;
+}
+.details p{
+    color: black;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+.detail{
+    height: fit-content !important;
+}
+hr{
+    width: 70% !important;
+    font-weight: bold !important;
+    margin-left: 0% !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px;
+    font-weight: bolder !important;
+    height: 2px !important;
+    background-color: #eba708;
+}

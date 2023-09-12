@@ -6,15 +6,29 @@
     font-size:x-large;
 }
 #navBrand{
-    margin-left:20vw;
-    margin-right: 40vw;
+    margin-left:188px;
+    margin-right: 37px;
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 .btn{
-    border-radius: 20px !important;
-    padding-left: 30px !important;
-    padding-right: 30px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;
-    background-color: red !important;
-    border: none !important;
+    width: 206px;
+    height: 42px;
+    flex-shrink: 0;
+    background-color: #DD1D21 !important;
+    position:absolute;
+    right:258px;
+    color: #FFF;
+    text-align: center;
+    font-family: Outfit;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }
+

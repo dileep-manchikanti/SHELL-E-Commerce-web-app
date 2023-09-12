@@ -1,6 +1,6 @@
 div.home{
     height:70vh;
-    width:68vw;
+    width:70vw;
     margin-top:10vh;
     margin-left: 15vw;
     background-color: white;
@@ -11,9 +11,14 @@ div.home{
 #login{
     color: black;
     font-weight: bold;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }
 #info{
-    background-color: #f1cd6d;
+    background: linear-gradient(135deg, #FFF3BC 0%, #E7B131 70%);
     border-radius: 10px;
     color:white;
 }
@@ -24,23 +29,24 @@ p{
     margin-top: 10% !important;
     font-size: larger !important;    
 }
-h2{
+#login h2{
     margin-bottom: 10%;
 }
 input#userid,input#password{
-    margin-top: 5%;
-    margin-bottom: 5%;
+    border: none;
+    margin-top: 3%;
 }
 div button{
     background-color: #f1cd6d;
     padding-left:10%;
     padding-right: 10%;
-    border: none;
+    border: none !important;
     padding-top: 1%;
     padding-bottom: 1%;
     color: white;
     border-radius: 2%;
-    margin-top: 5%;
+    margin-top: 2%;
+    margin-bottom: 5%;
 }
 div button:hover{
     transform: scale(1.2);
@@ -49,4 +55,20 @@ div button:hover{
 #login span{
     color:blue;
     font-weight: 500;
+}
+a{
+    text-decoration: underline !important;
+    color: blue !important;
+}
+a:hover{
+    cursor: pointer;
+    color: red !important;
+}
+hr{
+    width: 60% !important;
+    color:black !important;
+    font-weight: bold !important;
+    margin-left: 20% !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px;
 }
