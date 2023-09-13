@@ -13,9 +13,11 @@ namespace Bootcamp_Project.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ProductService productService;
-        public ProductController(EF_DataContext context)
+        private readonly ILogger<ProductController> logger;
+        public ProductController(EF_DataContext context, ILogger<ProductController> logger)
         {
-            productService = new ProductService(context);
+            productService = new ProductService(context, logger);
+            this.logger = logger;
         }
 
         // GET: api/<ProductController>
@@ -35,6 +37,45 @@ namespace Bootcamp_Project.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new {errorCode=500,errorMessage=ex.Message});
+            }
+        }
+
+        [HttpGet]
+        [Route("product/{category}")]
+        public IActionResult GetProductList(string category)
+        {
+            try
+            {
+                IEnumerable<ProductListResponse> productList = productService.GetProductByCategory(category);
+                if (!productList.Any())
+                {
+                    return NotFound(new { errorCode = 404, errorMessage = "No product available for this category" });
+                }
+                return Ok(productList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = 500, errorMessage = ex.Message });
+            }
+        }
+
+        
+        [HttpGet]
+        [Route("product/details/{productId}")]
+        public IActionResult GetProductList(int productId)
+        {
+            try
+            {
+                ProductDetailResponse productDetail = productService.GetProductDetail(productId);
+                if (productDetail != null)
+                {
+                    return NotFound(new { errorCode = 404, errorMessage = "Product details not available" });
+                }
+                return Ok(productDetail);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = 500, errorMessage = ex.Message });
             }
         }
     }
