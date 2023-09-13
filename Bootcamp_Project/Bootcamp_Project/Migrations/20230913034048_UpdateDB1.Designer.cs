@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    [Migration("20230912085926_AddMoretables")]
-    partial class AddMoretables
+    [Migration("20230913034048_UpdateDB1")]
+    partial class UpdateDB1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -36,8 +36,8 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("orderId")
                         .HasColumnType("integer");
@@ -48,8 +48,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("userId")
                         .HasColumnType("integer");
@@ -71,8 +71,8 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("paymentTypeId")
                         .HasColumnType("integer");
@@ -80,8 +80,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("userId")
                         .HasColumnType("integer");
@@ -103,8 +103,8 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("paymentMethod")
                         .HasColumnType("integer");
@@ -112,8 +112,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -128,8 +128,8 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("orderId")
                         .HasColumnType("integer");
@@ -143,8 +143,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("transactionStatus")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("userId")
                         .HasColumnType("integer");
@@ -168,8 +168,16 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -178,8 +186,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -200,8 +208,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("categoryId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("description")
                         .IsRequired()
@@ -224,8 +232,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -242,14 +250,14 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("userId")
                         .HasColumnType("integer");
@@ -272,8 +280,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("cartId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("productId")
                         .HasColumnType("integer");
@@ -284,8 +292,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -307,8 +315,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("addressId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("orderStatus")
                         .HasColumnType("integer");
@@ -322,8 +330,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<decimal>("totalAmount")
                         .HasColumnType("numeric");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("userId")
                         .HasColumnType("integer");
@@ -347,8 +355,8 @@ namespace Bootcamp_Project.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("orderId")
                         .HasColumnType("integer");
@@ -362,8 +370,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -394,8 +402,8 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("landmark")
                         .IsRequired()
@@ -411,8 +419,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -435,8 +443,8 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("phoneNumber")
                         .HasColumnType("integer");
@@ -444,8 +452,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -460,8 +468,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("addressid")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("createdDate")
+                        .HasColumnType("bigint");
 
                     b.Property<bool>("isDefault")
                         .HasColumnType("boolean");
@@ -469,8 +477,8 @@ namespace Bootcamp_Project.Migrations
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("updatedDate")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<long>("updatedDate")
+                        .HasColumnType("bigint");
 
                     b.HasKey("userid", "addressid");
 

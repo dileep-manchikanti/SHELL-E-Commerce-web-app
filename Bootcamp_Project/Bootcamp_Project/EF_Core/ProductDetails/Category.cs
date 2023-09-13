@@ -14,8 +14,12 @@ namespace Bootcamp_Project.EF_Core.ProductDetails
         [Required]
         public string name { get; set; }
         [Required]
-        public DateTime createdDate { get; set; }
-        public DateTime updatedDate { get; set; }
+        public string description { get; set; }
+        public string image {  get; set; }
+
+        [Required]
+        public long createdDate { get; set; }
+        public long updatedDate { get; set; }
         [DefaultValue(true)]
         public bool status { get; set; }
     }

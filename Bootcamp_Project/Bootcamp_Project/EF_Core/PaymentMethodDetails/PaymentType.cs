@@ -12,8 +12,8 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         public int Id { get; set; }
         public PaymentMethods paymentMethod { get; set; }
         [Required]
-        public DateTime createdDate { get; set; }
-        public DateTime updatedDate { get; set; }
+        public long createdDate { get; set; }
+        public long updatedDate { get; set; }
         [DefaultValue(true)]
         public bool status { get; set; }
     }
