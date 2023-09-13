@@ -11,7 +11,7 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public int addressid { get; set; }
         public virtual User user { get; set; }
         public virtual Address address { get; set; }
-        [DefaultValue(true)]
+        [DefaultValue(false)]
         public bool isDefault { get; set; }
         [Required]
         public long createdDate { get; set; }
