@@ -1,4 +1,5 @@
 import React,{Component} from "react";
+import { Link } from "react-router-dom";
 import '../css/signUp.css';
 
 class SignUp extends Component{
@@ -49,8 +50,9 @@ class SignUp extends Component{
                         <hr></hr>
                     </div>
                     </div>
-                    <input type='checkbox'></input>  <span>By signing up,I agree to</span> <a>terms and conditions.</a><br></br>
-                    <button btn btn-primary>Sign Up</button> or <a href="">Login</a>
+                    <input type='checkbox'></input>  <span>By signing up,I agree to</span> <a id="terms">terms and conditions.</a><br></br>
+                    <button btn btn-primary>Sign Up</button> or  
+                    <Link to='/'><a href="">Login</a></Link>
                 </div>
             </div>
         )

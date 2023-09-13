@@ -86,5 +86,7 @@ a{
     font-weight: 400;
     line-height: normal;
     text-decoration: none !important;
-    margin-left: 8px;
+}
+#terms{
+    margin-left: 0px !important;
 }
