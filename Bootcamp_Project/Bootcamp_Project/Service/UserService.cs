@@ -4,6 +4,7 @@ using Bootcamp_Project.Models.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using System.Net;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace Bootcamp_Project.Service
@@ -124,5 +125,132 @@ namespace Bootcamp_Project.Service
                 return BadRequest(new { errorCode = StatusCodes.Status500InternalServerError, errorMessage = ex.Message });
             }
         }
+
+        public IActionResult GetUserAddresses(int user_id)
+        {
+            try
+            {
+                _logger.LogInformation("inside user service start");
+                var user_addresses = _context.User_Addresses.Where(e => e.userid == user_id);
+                if (user_addresses == null)
+                {
+                    return NotFound(new { errorCode = StatusCodes.Status404NotFound, errorMessage = "User not found" });
+                }
+                Console.WriteLine(user_addresses);
+                _logger.LogInformation("inside user service start after if");
+
+                List<int> addressIds = new List<int>();
+                foreach (var address in user_addresses)
+                {
+                    addressIds.Add(address.addressid);
+                }
+                var resp = _context.Addresses.Where(e => addressIds.Contains(e.Id));
+
+                List<UserAddressesResponse> addresses = new List<UserAddressesResponse>();
+                foreach (var address in resp)
+                {
+                    addresses.Add(new UserAddressesResponse()
+                {
+                        addressLine1 = address.addressLine1,
+                        addressLine2 = address.addressLine2,
+                        city = address.city,
+                        state = address.state,
+                        postalCode = address.postalCode,
+                        landmark = address.landmark
+                    });
+                }
+                return Ok(addresses);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = StatusCodes.Status500InternalServerError, errorMessage = ex.Message });
+            }
+        }
+
+
+        public IActionResult AddAddress([FromBody] AddressRequest address)
+        {
+            try
+            {
+                Address newAddress = new Address()
+                {
+                    addressLine1 = address.addressLine1,
+                    addressLine2 = address.addressLine2,
+                    city = address.city,
+                    state = address.state,
+                    postalCode = address.postalCode,
+                    landmark = address.landmark
+                };
+                _context.Addresses.Add(newAddress);
+
+                User_Address newUserAddress = new User_Address() {
+                    user = _context.Users.Where(e => e.Id == address.userId).FirstOrDefault(),
+                    address = newAddress,
+                    isDefault = address.isDefault
+                };
+                if(address.isDefault)
+                {
+                    var existingAddress = _context.User_Addresses.Where(e => e.userid==address.userId &&  e.isDefault == true).FirstOrDefault();
+                    if(existingAddress != null) {
+                        existingAddress.isDefault = false;
+                    }
+                }
+                _context.User_Addresses.Add(newUserAddress);
+                _context.SaveChanges();
+                return Ok(address);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = StatusCodes.Status500InternalServerError, errorMessage = ex.Message });
+            }
+        }
+
+
+        public IActionResult UpdateAddress([FromBody] AddressRequest data,int address_id)
+        {
+            try
+            {
+                var user = _context.Users.Where(e => e.Id == data.userId).FirstOrDefault();
+                if (user == null)
+                {
+                    return NotFound(new { errorCode = StatusCodes.Status404NotFound, errorMessage = "User not found" });
+                }
+                var userAddress = _context.User_Addresses.Where(e => e.userid == data.userId && e.addressid == address_id).FirstOrDefault();
+                if (userAddress == null)
+                {
+                    return NotFound(new { errorCode = StatusCodes.Status404NotFound, errorMessage = "Address with given user id not found" });
+                }
+                var address = _context.Addresses.Where(e => e.Id == address_id).FirstOrDefault();
+                if(address == null)
+                {
+                    return NotFound(new { errorCode = StatusCodes.Status404NotFound, errorMessage = "Address not found" });
+                }
+                address.addressLine1 = data.addressLine1;
+                address.addressLine2 = data.addressLine2;
+                address.postalCode = data.postalCode;
+                address.landmark = data.landmark;
+                address.city = data.city;
+                address.state = data.state;
+
+                userAddress.isDefault = data.isDefault;
+                if (data.isDefault)
+                {
+                    var existingAddress = _context.User_Addresses.Where(e => e.userid == data.userId && e.isDefault == true).FirstOrDefault();
+                    if (existingAddress != null)
+                    {
+                        existingAddress.isDefault = false;
+                    }
+                }
+
+                _context.SaveChanges();
+                return Ok(address);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = StatusCodes.Status500InternalServerError, errorMessage = ex.Message });
+            }
+        }
+
     }
 }

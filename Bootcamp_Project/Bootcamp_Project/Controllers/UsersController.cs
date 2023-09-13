@@ -52,5 +52,30 @@ namespace Bootcamp_Project.Controllers
             Console.WriteLine("inside controller", data);
             return userService.LoginUser(data);
         }
+
+
+        //GET : api/<UserController>/address/{user_id}
+        [HttpGet("address/{user_id}")]
+        public IActionResult GetUserAddresses(int user_id)
+        {
+            return userService.GetUserAddresses(user_id);
+        }
+
+
+        //POST : api/<UserController>/address/add
+        [HttpPost("address/add")]
+        public IActionResult AddAddress([FromBody] AddressRequest data)
+        {
+            return userService.AddAddress(data);
+        }
+
+
+        //POST : api/<UserController>/address/{address_id}
+        [HttpPost("address/{address_id}")]
+        public IActionResult UpdateAddress([FromBody] AddressRequest data,int address_id)
+        {
+            return userService.UpdateAddress(data,address_id);
+        }
+
     }
 }
