@@ -1,5 +1,7 @@
 using Bootcamp_Project.EF_Core;
+using Bootcamp_Project.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -10,7 +12,10 @@ namespace Bootcamp_Project
     {
         public static void Main(string[] args)
         {
+            
             var builder = WebApplication.CreateBuilder(args);
+
+            
 
             // Add services to the container.
 
@@ -22,7 +27,7 @@ namespace Bootcamp_Project
             builder.Services.AddDbContext<EF_DataContext>(
                 o => o.UseNpgsql(builder.Configuration.GetConnectionString("conn_string")));
 
-           
+            builder.Services.AddLogging();
 
             var app = builder.Build();
 

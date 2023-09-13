@@ -3,6 +3,7 @@ using System;
 using Bootcamp_Project.EF_Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    partial class EF_DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230913061726_UpdateDB3")]
+    partial class UpdateDB3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -444,24 +446,21 @@ namespace Bootcamp_Project.Migrations
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("dateOfBirth")
+                    b.Property<DateTime?>("dateOfBirth")
+                        .IsRequired()
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("firstName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("firstName")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("fullName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("fullName")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("lastName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("lastName")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("phoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("phoneNumber")
+                        .HasColumnType("integer");
 
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
@@ -470,9 +469,6 @@ namespace Bootcamp_Project.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("Email")
-                        .IsUnique();
 
                     b.ToTable("user");
                 });

@@ -90,3 +90,4 @@ C:\Users\VANSH\Documents\SHELL-E-Commerce-web-app\Bootcamp_Project\Bootcamp_Proj
 C:\Users\VANSH\Documents\SHELL-E-Commerce-web-app\Bootcamp_Project\Bootcamp_Project\obj\Debug\net6.0\Bootcamp_Project.pdb
 C:\Users\VANSH\Documents\SHELL-E-Commerce-web-app\Bootcamp_Project\Bootcamp_Project\obj\Debug\net6.0\Bootcamp_Project.genruntimeconfig.cache
 C:\Users\VANSH\Documents\SHELL-E-Commerce-web-app\Bootcamp_Project\Bootcamp_Project\obj\Debug\net6.0\ref\Bootcamp_Project.dll
+C:\Users\VANSH\Documents\SHELL-E-Commerce-web-app\Bootcamp_Project\Bootcamp_Project\bin\Debug\net6.0\BCrypt.Net-Core.dll

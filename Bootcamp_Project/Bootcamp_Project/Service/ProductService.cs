@@ -1,5 +1,6 @@
 ﻿using Bootcamp_Project.EF_Core;
 using Bootcamp_Project.EF_Core.ProductDetails;
+using Bootcamp_Project.Models.Products;
 
 namespace Bootcamp_Project.Service
 {
@@ -12,11 +13,11 @@ namespace Bootcamp_Project.Service
             _context = context;
         }
 
-        public List<Category> GetCategories()
+        public List<CategoryModel> GetCategories()
         {
             var response = _context.Categories.ToList();
-            List<Category> categories = new List<Category>();
-            response.ForEach(c => categories.Add(new Category
+            List<CategoryModel> categories = new List<CategoryModel>();
+            response.ForEach(c => categories.Add(new CategoryModel
             {
                 Id = c.Id,
                 name = c.name,

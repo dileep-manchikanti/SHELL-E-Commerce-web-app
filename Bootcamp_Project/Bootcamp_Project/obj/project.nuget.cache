@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rPnyWrEN5LJgi1tg5cSLgsKn66dsLCLD2TSJVlTLYDaKdolLtzcBMVhDx5tYwqITtzvlu5DeQDN6PYDNo0WwEg==",
+  "dgSpecHash": "b4orADF5yVAWIMHK4CveEnvnIk092lGLGfqJ2zPCm8hD1Zt6TaE3BlPPw/e4jRTh1RY4Up3h81kMO6j1gmjRxQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\VANSH\\Documents\\SHELL-E-Commerce-web-app\\Bootcamp_Project\\Bootcamp_Project\\Bootcamp_Project.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\VANSH\\.nuget\\packages\\bcrypt.net-core\\1.6.0\\bcrypt.net-core.1.6.0.nupkg.sha512",
     "C:\\Users\\VANSH\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VANSH\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.21\\microsoft.aspnetcore.authentication.jwtbearer.6.0.21.nupkg.sha512",
     "C:\\Users\\VANSH\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

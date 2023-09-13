@@ -1,5 +1,6 @@
 ﻿using Bootcamp_Project.EF_Core;
 using Bootcamp_Project.EF_Core.ProductDetails;
+using Bootcamp_Project.Models.Products;
 using Bootcamp_Project.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace Bootcamp_Project.Controllers
         {
             try
             {
-                IEnumerable<Category> categories = productService.GetCategories();
+                IEnumerable<CategoryModel> categories = productService.GetCategories();
                 if (!categories.Any())
                 {
                     return NotFound(new {errorCode=404, errorMessage="No categories found in the db"});

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,8 +14,14 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public int Id { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; } = string.Empty;
-        [Phone]
-        public int phoneNumber { get; set; }
+        [Phone,Required]
+        public string phoneNumber { get; set; }
+        [Required]
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string fullName { get; set; }
+        [Required]
+        public DateTime dateOfBirth { get; set; }
         [Required]
         public string Password { get; set; } = string.Empty;
         [Required]
