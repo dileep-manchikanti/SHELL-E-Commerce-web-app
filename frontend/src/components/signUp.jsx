@@ -50,7 +50,7 @@ class SignUp extends Component{
                     </div>
                     </div>
                     <input type='checkbox'></input>  <span>By signing up,I agree to</span> <a>terms and conditions.</a><br></br>
-                    <button btn btn-primary>SignUp</button> or <a href="">Login</a>
+                    <button btn btn-primary>Sign Up</button> or <a href="">Login</a>
                 </div>
             </div>
         )

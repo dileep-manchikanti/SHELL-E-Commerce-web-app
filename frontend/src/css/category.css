@@ -1,0 +1,31 @@
+.card{
+    height:300px;
+    width: 400px;
+    border:1px solid black;
+    margin-left:65px;
+    margin-right: 20px;
+    margin-top:20px;
+}
+div.cardImg{
+    height: 200px;
+    width:350px;
+    background-image: url('../components/R.jpg') !important;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    margin-top: 2%;
+}
+.cardTitle{
+    color: #000;
+text-align: center;
+font-family: Outfit;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-top: 2%;
+
+}

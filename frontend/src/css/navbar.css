@@ -6,8 +6,7 @@
     font-size:x-large;
 }
 #navBrand{
-    margin-left:188px;
-    margin-right: 37px;
+    margin-left:140px;
     color: #FFF;
     font-family: Outfit;
     font-size: 32px;
@@ -19,9 +18,6 @@
     width: 206px;
     height: 42px;
     flex-shrink: 0;
-    background-color: #DD1D21 !important;
-    position:absolute;
-    right:258px;
     color: #FFF;
     text-align: center;
     font-family: Outfit;
@@ -31,4 +27,27 @@
     line-height: normal;
     text-transform: capitalize;
 }
+.icon{
+    margin-left:20px;
+    margin-right: 20px;
+    color: #FFF;
+    font-family: Outfit;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.icon:hover{
+    cursor: pointer;
+}
+a{
+    margin-left:20px;
+    margin-right: 20px;
+    color:white !important;
+}
+.icons{
+    position:absolute;
+    right:100px !important;
+}
+
 

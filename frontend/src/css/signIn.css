@@ -58,14 +58,14 @@ div button:hover{
 }
 a{
     text-decoration: underline !important;
-    color: blue !important;
+    color: #40A2CC !important;
 }
 a:hover{
     cursor: pointer;
-    color: red !important;
+    color: #40A2CC !important;
 }
 hr{
-    width: 60% !important;
+    width: 50% !important;
     color:black !important;
     font-weight: bold !important;
     margin-left: 20% !important;
