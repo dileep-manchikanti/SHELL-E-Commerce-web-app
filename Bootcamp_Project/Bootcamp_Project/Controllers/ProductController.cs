@@ -58,5 +58,25 @@ namespace Bootcamp_Project.Controllers
                 return BadRequest(new { errorCode = 500, errorMessage = ex.Message });
             }
         }
+
+        
+        [HttpGet]
+        [Route("product/details/{productId}")]
+        public IActionResult GetProductList(int productId)
+        {
+            try
+            {
+                ProductDetailResponse productDetail = productService.GetProductDetail(productId);
+                if (productDetail != null)
+                {
+                    return NotFound(new { errorCode = 404, errorMessage = "Product details not available" });
+                }
+                return Ok(productDetail);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { errorCode = 500, errorMessage = ex.Message });
+            }
+        }
     }
 }

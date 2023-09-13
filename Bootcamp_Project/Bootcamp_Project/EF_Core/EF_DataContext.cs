@@ -6,6 +6,7 @@ using Bootcamp_Project.EF_Core.UserDetails;
 using Microsoft.EntityFrameworkCore;
 using System.Xml;
 using Microsoft.Extensions.Logging;
+using Bootcamp_Project.EF_Core.GlobalVariables;
 
 namespace Bootcamp_Project.EF_Core
 {
@@ -52,11 +53,11 @@ namespace Bootcamp_Project.EF_Core
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
+        public DbSet<GlobalVariable> GlobalVariables { get; set; }
 
         public override int SaveChanges()
         {
