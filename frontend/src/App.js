@@ -5,6 +5,8 @@ import SignIn from './components/signIn';
 import Navbar from './components/Navbar';
 import SignUp from './components/signUp';
 import Categories from './components/categories';
+import Products from './components/products';
+import Data from './components/data';
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
           <Route path="/" exact  element={<SignIn />}/>
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/products/:id" element={<Products/>} />
+          <Route path="/data" element={<Data />} />
       </Routes>
     </BrowserRouter>
-  );
+  ); 
 }
 export default App;

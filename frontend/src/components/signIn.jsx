@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 class SignIn extends Component{
     render(){
         return(
-            <div>
+            <div className="signin">
             <Navbar />
             <div className="home row">
                 <div id="login" className="col-6">

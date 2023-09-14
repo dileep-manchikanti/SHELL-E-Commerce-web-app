@@ -10,7 +10,7 @@ class Navbar extends Component{
         <div className='navBar'>
             <Link to='/categories'><span id='navBrand'>Shell-Sell</span></Link>
             <i className='icons'>
-             <Link to='/caategories'><span className='icon'>Home</span></Link>
+             <Link to='/categories'><span className='icon'>Home</span></Link>
              <span className='icon'>Orders</span>
             <FaUser className='icon'/>
             <FaShoppingCart className='icon'/>

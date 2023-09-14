@@ -2,8 +2,9 @@
     height: 10vh;
     color:aliceblue;
     font-weight:700;
-    padding-top: 20px;
+    padding-top: 10px;
     font-size:x-large;
+    background-color: #E8B131;
 }
 #navBrand{
     margin-left:140px;
