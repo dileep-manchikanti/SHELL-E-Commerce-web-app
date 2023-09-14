@@ -1,5 +1,4 @@
-﻿using Bootcamp_Project.EF_Core.FeedbackDetails;
-using Bootcamp_Project.EF_Core.PaymentMethodDetails;
+﻿using Bootcamp_Project.EF_Core.PaymentMethodDetails;
 using Bootcamp_Project.EF_Core.ProductDetails;
 using Bootcamp_Project.EF_Core.ShoppingDetails;
 using Bootcamp_Project.EF_Core.UserDetails;
@@ -56,7 +55,6 @@ namespace Bootcamp_Project.EF_Core
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<GlobalVariable> GlobalVariables { get; set; }
 
         public override int SaveChanges()
