@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 using Bootcamp_Project.EF_Core.PaymentMethodDetails;
+using static Bootcamp_Project.Utils.CommonUtils;
 
 namespace Bootcamp_Project.EF_Core.ShoppingDetails
 {
