@@ -33,10 +33,6 @@ p{
 #login h2{
     margin-bottom: 10%;
 }
-input#userid,input#password{
-    border: none;
-    margin-top: 3%;
-}
 div button{
     background-color: #f1cd6d;
     padding-left:10%;
@@ -58,7 +54,7 @@ div button:hover{
     font-weight: 500;
 }
 a{
-    text-decoration: underline !important;
+    /* text-decoration: underline !important; */
     color: #40A2CC !important;
 }
 a:hover{
@@ -69,11 +65,17 @@ hr{
     width: 50% !important;
     color:black !important;
     font-weight: bold !important;
-    margin-left: 20% !important;
+    margin-left: 25% !important;
     margin-top: 0px !important;
     margin-bottom: 0px;
 }
 .signin{
     background: linear-gradient(135deg, #E8B131 0%,  #FFF3BC 80%);
     height: 100vh;
+}
+#userid,#password{
+    margin-top:4% !important;
+    margin-bottom: 0px !important;
+    text-align: center !important;
+    border: none !important;
 }

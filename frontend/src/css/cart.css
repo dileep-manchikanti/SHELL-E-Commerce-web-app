@@ -1,0 +1,34 @@
+.shop{
+    background-image: url('../components/cart.jpg') !important;
+    height: 122vh !important;
+    width: 100%;
+    position: absolute;
+    background-position: center !important;
+    background-size:cover !important;
+    opacity: 0.3 !important;
+}
+.backdrop{
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px !important;
+    align-items: center;
+    margin: 50px 50px;
+    justify-content: center;
+    height: fit-content;
+    background-color: white !important;
+    opacity: 1 !important;
+    position: relative;
+    padding-bottom: 20px !important;
+}
+hr{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#cartHead{
+    font-family: 'Outfit';
+    top: 0;
+    left: 0;
+    margin-left: 20px;
+    position: relative;
+    
+}

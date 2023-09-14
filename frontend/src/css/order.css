@@ -1,0 +1,53 @@
+.order {
+    width: fit-content;
+    height: fit-content;
+    margin-left: 5vw !important;
+
+    margin-bottom: 8vh;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+
+}
+
+/* .order:hover{
+    transform: scale(1.1);
+    transition: all 3ms;
+    cursor: pointer;
+} */
+
+.orderImg {
+    /* background-image: url('../Components/Open\ Parcel.png') !important; */
+    height: 150px;
+    width: 200px !important;
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
+    margin-top: 10px !important;
+}
+
+.orderInfo {
+    position: relative;
+    margin-left: 50px;
+    padding-right: 50px;
+}
+
+.prodDesc {
+    color: #9D9D9D;
+    font-family: 'Outfit';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+#productTitle {
+
+    color: #000;
+    font-family: 'Outfit';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

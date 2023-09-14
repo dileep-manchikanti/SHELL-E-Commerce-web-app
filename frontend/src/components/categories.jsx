@@ -12,9 +12,6 @@ class Categories extends Component{
     state={'response':[]};
     constructor(){
         super();
-        
-        //this.getCategories();
-        // console.log('constructor');
     }
     componentDidMount(){
         this.getCategories();

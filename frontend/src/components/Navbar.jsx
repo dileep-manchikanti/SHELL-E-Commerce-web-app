@@ -11,9 +11,9 @@ class Navbar extends Component{
             <Link to='/categories'><span id='navBrand'>Shell-Sell</span></Link>
             <i className='icons'>
              <Link to='/categories'><span className='icon'>Home</span></Link>
-             <span className='icon'>Orders</span>
-            <FaUser className='icon'/>
-            <FaShoppingCart className='icon'/>
+             <Link><span className='icon'>Orders</span></Link>
+            <Link to='/profile'><FaUser className='icon'/></Link>
+            <Link to='/cart'><FaShoppingCart className='icon'/></Link>
             </i>
         </div>
         )

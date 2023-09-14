@@ -7,6 +7,8 @@ import SignUp from './components/signUp';
 import Categories from './components/categories';
 import Products from './components/products';
 import Data from './components/data';
+import Profile from './components/profile';
+import Cart from './components/cart';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/categories" element={<Categories />} />
           <Route path="/products/:id" element={<Products/>} />
           <Route path="/data" element={<Data />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   ); 

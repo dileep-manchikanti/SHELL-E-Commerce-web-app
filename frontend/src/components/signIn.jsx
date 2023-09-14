@@ -4,6 +4,11 @@ import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 
 class SignIn extends Component{
+    handleUser(e){
+        console.log(e.key);
+        const element=document.getElementById("userid");
+        element.innerHTML="|";
+    }
     render(){
         return(
             <div className="signin">
@@ -11,11 +16,14 @@ class SignIn extends Component{
             <div className="home row">
                 <div id="login" className="col-6">
                     <h2>Login</h2>
-                    <div>UserName</div> 
-                    <input id='userid'></input>
+                    <h4>UserName</h4> 
+                    {/* <p id='userid' onClick={()=>{this.handleUser()}}>Enter User Name</p> */}
+                    <input id='userid' value="Enter UserName"></input>
                     <hr></hr>
-                    <div>Password</div> 
-                    <input id ='password'></input>
+                    <br></br>
+                    {/* <br></br> */}
+                    <h4>Password</h4> 
+                    <p id='password'>Enter Password</p>
                     <hr></hr>
                     <div>
                         <Link to='/categories'><button>Log In</button></Link>
