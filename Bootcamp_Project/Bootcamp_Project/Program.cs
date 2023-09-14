@@ -29,6 +29,14 @@ namespace Bootcamp_Project
 
             builder.Services.AddLogging();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("clients-allowed", option =>
+                {
+                    option.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -42,7 +50,7 @@ namespace Bootcamp_Project
 
             app.UseAuthorization();
 
-
+            app.UseCors("clients-allowed");
             app.MapControllers();
 
             app.Run();

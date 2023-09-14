@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    [Migration("20230913034048_UpdateDB1")]
-    partial class UpdateDB1
+    [Migration("20230913191554_InitialDB")]
+    partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -446,8 +446,24 @@ namespace Bootcamp_Project.Migrations
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("phoneNumber")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("dateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("firstName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("fullName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("lastName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
@@ -456,6 +472,9 @@ namespace Bootcamp_Project.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("user");
                 });

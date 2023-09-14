@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    [Migration("20230913110308_UpdateDB10")]
-    partial class UpdateDB10
+    [Migration("20230914064423_UpdateDB100")]
+    partial class UpdateDB100
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,8 +42,11 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("orderId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("rating")
+                    b.Property<int>("productId")
                         .HasColumnType("integer");
+
+                    b.Property<float>("rating")
+                        .HasColumnType("real");
 
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
@@ -63,6 +66,30 @@ namespace Bootcamp_Project.Migrations
                     b.ToTable("feedback");
                 });
 
+            modelBuilder.Entity("Bootcamp_Project.EF_Core.GlobalVariables.GlobalVariable", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GlobalVariables");
+                });
+
             modelBuilder.Entity("Bootcamp_Project.EF_Core.PaymentMethodDetails.PaymentMethod", b =>
                 {
                     b.Property<int>("Id")
@@ -70,6 +97,26 @@ namespace Bootcamp_Project.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExpiryDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UpiId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
@@ -105,6 +152,10 @@ namespace Bootcamp_Project.Migrations
 
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("paymentMethod")
                         .HasColumnType("integer");
@@ -205,8 +256,14 @@ namespace Bootcamp_Project.Migrations
                     b.Property<Guid>("SKU")
                         .HasColumnType("uuid");
 
+                    b.Property<decimal>("basePrice")
+                        .HasColumnType("numeric");
+
                     b.Property<int>("categoryId")
                         .HasColumnType("integer");
+
+                    b.Property<float>("cgst")
+                        .HasColumnType("real");
 
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
@@ -219,15 +276,14 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<decimal>("price")
-                        .HasColumnType("numeric");
-
                     b.Property<string>("productImage")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("quantity")
                         .HasColumnType("integer");
+
+                    b.Property<float>("sgst")
+                        .HasColumnType("real");
 
                     b.Property<bool>("status")
                         .HasColumnType("boolean");
@@ -457,11 +513,19 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("hashedEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("salt")
                         .IsRequired()
                         .HasColumnType("text");
 

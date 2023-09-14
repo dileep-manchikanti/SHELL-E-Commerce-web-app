@@ -4,7 +4,7 @@
 
 namespace Bootcamp_Project.Migrations
 {
-    public partial class UpdateDB4 : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
