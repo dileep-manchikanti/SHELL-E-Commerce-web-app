@@ -1,6 +1,5 @@
 ﻿using Bootcamp_Project.EF_Core;
 using Bootcamp_Project.Models.Cart;
-using Bootcamp_Project.Models.Products;
 using Bootcamp_Project.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,7 +60,7 @@ namespace Bootcamp_Project.Controllers
         }
 
         [HttpGet]
-        [Route("cart/{userId}")]
+        [Route("{userId}")]
         public IActionResult CartDetail(int userId)
         {
             try

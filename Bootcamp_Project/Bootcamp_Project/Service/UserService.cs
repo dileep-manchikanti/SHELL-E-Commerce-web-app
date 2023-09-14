@@ -20,7 +20,6 @@ namespace Bootcamp_Project.Service
             _logger = logger;
         }
 
-
         public IActionResult GetUsers()
         {
             try
@@ -71,7 +70,6 @@ namespace Bootcamp_Project.Service
 
         public IActionResult RegisterUser(RegisterRequest newUser)
         {
-
             try
             {
                 var fullName = newUser.firstName + " "+ newUser.lastName;
@@ -166,7 +164,6 @@ namespace Bootcamp_Project.Service
                 return BadRequest(new { errorCode = StatusCodes.Status500InternalServerError, errorMessage = ex.Message });
             }
         }
-
 
         public IActionResult AddAddress([FromBody] AddressRequest address)
         {

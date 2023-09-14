@@ -41,7 +41,7 @@ namespace Bootcamp_Project.Controllers
         }
 
         [HttpGet]
-        [Route("product/{category}")]
+        [Route("{category}")]
         public IActionResult GetProductList(string category)
         {
             try
@@ -61,7 +61,7 @@ namespace Bootcamp_Project.Controllers
 
         
         [HttpGet]
-        [Route("product/details/{productId}")]
+        [Route("details/{productId}")]
         public IActionResult GetProductList(int productId)
         {
             try

@@ -70,6 +70,7 @@ namespace Bootcamp_Project.Service
             newCartItem.cart = cart;
             newCartItem.quantity = cartItem.quantity;
             _context.CartItems.Add(newCartItem);
+            _context.SaveChanges();
 
             return "Product added to cart successfully";
         }

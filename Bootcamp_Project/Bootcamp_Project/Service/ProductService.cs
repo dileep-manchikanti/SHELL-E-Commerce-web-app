@@ -2,7 +2,6 @@
 using Bootcamp_Project.EF_Core.ProductDetails;
 using Bootcamp_Project.EF_Core.ShoppingDetails;
 using Bootcamp_Project.Models.Cart;
-using Bootcamp_Project.Models.FeedBack;
 using Bootcamp_Project.Models.Price;
 using Bootcamp_Project.Models.Products;
 using Bootcamp_Project.Utils;
@@ -13,7 +12,6 @@ namespace Bootcamp_Project.Service
     {
         private readonly EF_DataContext _context;
         private readonly ILogger _logger;
-        private readonly FeedBackService _feedBackService;
 
         public ProductService(EF_DataContext context, ILogger logger)
         {
@@ -75,13 +73,6 @@ namespace Bootcamp_Project.Service
             ProductDeliveryDetails(productDetail);
 
             TotalPriceEstimation(product, productDetail);
-
-            ReviewSummary reviewSummary = _feedBackService.GetReviewSummary(productId);
-            if(reviewSummary != null)
-            {
-                productDetail.reviews = reviewSummary.reviews;
-                productDetail.rating = reviewSummary.averageRating;
-            }
 
             return productDetail;
         }
