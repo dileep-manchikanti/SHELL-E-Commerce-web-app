@@ -16,8 +16,6 @@ namespace Bootcamp_Project.Models.Products
         public decimal deliveryPrice { get; set; }
         public ProductTax taxDetails { get; set; }
         public decimal totalPrice { get; set; }
-        public float rating { get; set;}
-        public List<string>? reviews { get; set;}
         public int noOfDaysForDelivery { get; set; }
         public string deliveryDate { get; set; }
 

@@ -14,17 +14,24 @@ namespace Bootcamp_Project.EF_Core.ShoppingDetails
         public int Id { get; set; }
         [Required]
         public virtual User user { get; set; }
-        [Required]
-        public virtual PaymentMethod paymentMethod { get; set; }
-        [Required]
+
+        [DefaultValue(PaymentMethods.COD)]
+        public PaymentMethods paymentType { get; set; }
+        
         public virtual Address address { get; set; }
+
         [Required,NotNull]
         public decimal totalAmount { get; set; }
+
+
         [DefaultValue(OrderStatus.Initiated)]
         public OrderStatus orderStatus { get; set; }
+
         [Required]
         public long createdDate { get; set; }
+
         public long updatedDate { get; set; }
+
         [DefaultValue(true)]
         public bool status { get; set; }
 

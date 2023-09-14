@@ -1,6 +1,7 @@
 ﻿using Bootcamp_Project.EF_Core;
 using Bootcamp_Project.EF_Core.ProductDetails;
-using Bootcamp_Project.Models.FeedBack;
+using Bootcamp_Project.EF_Core.ShoppingDetails;
+using Bootcamp_Project.Models.Cart;
 using Bootcamp_Project.Models.Price;
 using Bootcamp_Project.Models.Products;
 using Bootcamp_Project.Utils;
@@ -11,7 +12,6 @@ namespace Bootcamp_Project.Service
     {
         private readonly EF_DataContext _context;
         private readonly ILogger _logger;
-        private readonly FeedBackService _feedBackService;
 
         public ProductService(EF_DataContext context, ILogger logger)
         {
@@ -74,13 +74,6 @@ namespace Bootcamp_Project.Service
 
             TotalPriceEstimation(product, productDetail);
 
-            ReviewSummary reviewSummary = _feedBackService.GetReviewSummary(productId);
-            if(reviewSummary != null)
-            {
-                productDetail.reviews = reviewSummary.reviews;
-                productDetail.rating = reviewSummary.averageRating;
-            }
-
             return productDetail;
         }
 
@@ -126,6 +119,37 @@ namespace Bootcamp_Project.Service
                 _logger.LogInformation("Delivery Rate: {deliveryPriceResponse.Value}", deliveryPriceResponse.Value);
                 productDetail.deliveryPrice = (productDetail.basePrice * int.Parse(deliveryPriceResponse.Value)) / 100;
             }
+        }
+
+        public decimal TaxEstimationForProductInCart(CartItem cartItem, int quantity)
+        {
+            decimal totalTax = 0;
+            ProductTax productTax = new ProductTax();
+            if (cartItem.product.sgst != 0)
+            {
+                productTax.sgstRate = cartItem.product.sgst;
+                productTax.sgst = cartItem.product.basePrice * (decimal)productTax.sgstRate / 100;
+                totalTax += productTax.sgst;
+            }
+            if (cartItem.product.cgst != 0)
+            {
+                productTax.cgstRate = cartItem.product.cgst;
+                productTax.cgst = cartItem.product.basePrice * (decimal)productTax.cgstRate / 100;
+                totalTax += productTax.cgst;
+            }
+            return totalTax * quantity;
+        }
+
+        public decimal ProductDeliveryPriceForCart(Product product, string productPrice, int quantity)
+        {
+            var deliveryPriceResponse = _context.GlobalVariables
+                .FirstOrDefault(p => p.Status && p.Name == CommonUtils.DELIVERY_PRICE_PERCENTAGE);
+            if (deliveryPriceResponse != null)
+            {
+                _logger.LogInformation("Delivery Rate: {deliveryPriceResponse.Value}", deliveryPriceResponse.Value);
+                return int.Parse(productPrice) * int.Parse(deliveryPriceResponse.Value) * quantity / 100;
+            }
+            return new decimal(0);
         }
     }
 }
