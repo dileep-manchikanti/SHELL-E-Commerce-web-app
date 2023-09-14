@@ -14,6 +14,8 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public int Id { get; set; }
         [Required, EmailAddress]
         public string Email { get; set; } = string.Empty;
+        [Required, EmailAddress]
+        public string hashedEmail { get; set; } = string.Empty;
         [Phone,Required]
         public string phoneNumber { get; set; }
         [Required]
@@ -24,6 +26,8 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public DateTime dateOfBirth { get; set; }
         [Required]
         public string Password { get; set; } = string.Empty;
+        [Required]
+        public string salt { get; set; }
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }

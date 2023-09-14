@@ -14,6 +14,14 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         public virtual User user { get; set; }
         [Required]
         public virtual PaymentType paymentType { get; set; }
+        
+        public string UpiId {get; set; }
+        public string AccountNumber { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string CVV {  get; set; }
+
+
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }

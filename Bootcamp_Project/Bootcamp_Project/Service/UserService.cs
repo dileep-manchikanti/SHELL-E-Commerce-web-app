@@ -13,7 +13,6 @@ namespace Bootcamp_Project.Service
     {
         private readonly ILogger _logger;
         private readonly EF_DataContext _context;
-        private static string salt = "shell-sell";
         public UserService(EF_DataContext context, ILogger logger)
         {
             _context = context;
@@ -76,18 +75,21 @@ namespace Bootcamp_Project.Service
                 string format = "dd-MM-yyyy";
                 DateTime dob = DateTime.SpecifyKind(DateTime.ParseExact(newUser.dateOfBirth, format, CultureInfo.InvariantCulture), DateTimeKind.Utc);
 
+                string salt = BCryptNet.GenerateSalt();
                 string hashedPassword = BCryptNet.HashPassword(newUser.password,salt);
                 string hashedEmail = BCryptNet.HashPassword(newUser.Email, salt);
                 string hashedPhoneNumber = BCryptNet.HashPassword(newUser.phoneNumber, salt);
                 User user = new User()
                 {
-                    Email = hashedEmail,
+                    Email = newUser.Email,
+                    hashedEmail = hashedEmail,
                     phoneNumber = hashedPhoneNumber,
                     firstName = newUser.firstName,
                     lastName = newUser.lastName,
                     fullName = fullName,
                     dateOfBirth = dob,
-                    Password = hashedPassword
+                    Password = hashedPassword,
+                    salt= salt
                 };
 
                 _context.Add(user);
@@ -104,17 +106,21 @@ namespace Bootcamp_Project.Service
         {
             try
             {
-                var hashedEmail = BCryptNet.HashPassword(data.email,salt);
-                var user = _context.Users.FirstOrDefault(e => e.Email == hashedEmail);
-                
+                var user = _context.Users.FirstOrDefault(e => e.Email == data.email);
                 if (user == null)
                 {
                     return NotFound(new { errorCode = StatusCodes.Status404NotFound, errorMessage = "Invalid credentials" });
                 }
-                bool isPasswordMatch = BCryptNet.Verify(data.password, user.Password);
-                if (isPasswordMatch)
+
+                var hashedEmail = BCryptNet.HashPassword(data.email,user.salt);
+                
+                if(hashedEmail == user.hashedEmail)
                 {
-                    return Ok("Login Successfull");
+                    var hashedPassword = BCryptNet.HashPassword(data.password, user.salt);
+                    if (hashedPassword == user.Password)
+                    {
+                        return Ok("Login Successfull");
+                    }
                 }
                 return BadRequest(new {errorCode=400,errorMessage="Invalid credentials" });
             }

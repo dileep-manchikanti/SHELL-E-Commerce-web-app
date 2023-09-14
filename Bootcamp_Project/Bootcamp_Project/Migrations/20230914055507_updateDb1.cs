@@ -4,20 +4,20 @@
 
 namespace Bootcamp_Project.Migrations
 {
-    public partial class UpdateDB1 : Migration
+    public partial class updateDb1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "description",
-                table: "category",
+                name: "hashedEmail",
+                table: "user",
                 type: "text",
                 nullable: false,
                 defaultValue: "");
 
             migrationBuilder.AddColumn<string>(
-                name: "image",
-                table: "category",
+                name: "salt",
+                table: "user",
                 type: "text",
                 nullable: false,
                 defaultValue: "");
@@ -26,12 +26,12 @@ namespace Bootcamp_Project.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "description",
-                table: "category");
+                name: "hashedEmail",
+                table: "user");
 
             migrationBuilder.DropColumn(
-                name: "image",
-                table: "category");
+                name: "salt",
+                table: "user");
         }
     }
 }

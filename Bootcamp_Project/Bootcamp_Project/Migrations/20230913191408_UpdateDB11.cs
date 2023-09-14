@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Bootcamp_Project.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class UpdateDB11 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,8 @@ namespace Bootcamp_Project.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "text", nullable: false),
+                    description = table.Column<string>(type: "text", nullable: false),
+                    image = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
                     status = table.Column<bool>(type: "boolean", nullable: false)
@@ -70,7 +72,11 @@ namespace Bootcamp_Project.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    phoneNumber = table.Column<int>(type: "integer", nullable: false),
+                    phoneNumber = table.Column<string>(type: "text", nullable: false),
+                    firstName = table.Column<string>(type: "text", nullable: false),
+                    lastName = table.Column<string>(type: "text", nullable: false),
+                    fullName = table.Column<string>(type: "text", nullable: false),
+                    dateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
@@ -433,6 +439,12 @@ namespace Bootcamp_Project.Migrations
                 name: "IX_transaction_userId",
                 table: "transaction",
                 column: "userId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_user_Email",
+                table: "user",
+                column: "Email",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_userAddress_addressid",

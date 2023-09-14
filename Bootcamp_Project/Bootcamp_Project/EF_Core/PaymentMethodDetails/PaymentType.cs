@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Bootcamp_Project.Utils;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +11,8 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         [Key]
         [Required]
         public int Id { get; set; }
-        public PaymentMethods paymentMethod { get; set; }
+        public CommonUtils.PaymentMethods paymentMethod { get; set; }
+        public string image { get; set; }
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }
@@ -18,11 +20,5 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         public bool status { get; set; }
     }
 
-    public enum PaymentMethods
-    {
-        UPI,
-        Card,
-        COD,
-        NetBanking
-    }
+    
 }

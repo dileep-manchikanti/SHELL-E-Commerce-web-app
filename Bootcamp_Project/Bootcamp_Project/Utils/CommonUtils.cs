@@ -5,5 +5,13 @@
         public const string NO_OF_DAYS_OF_DELIVERY = "NO_OF_DAYS_OF_DELIVERY";
 
         public const string DELIVERY_PRICE_PERCENTAGE = "DELIVERY_PRICE_PERCENTAGE";
+
+        public enum PaymentMethods
+        {
+            UPI,
+            Card,
+            COD,
+            NetBanking
+        }
     }
 }
