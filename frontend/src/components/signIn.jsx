@@ -32,9 +32,11 @@ class SignIn extends Component{
                 </div>
                 <div id="info" className="col-6">
                     <h3>Trading Market</h3>
-                        <p>
-                            A Single Marketplace for shell customers to buy  Shell products and avail Shell provided Services.
-                        </p>
+                    <p>
+                        A Single Marketplace for shell customers to buy  Shell products and avail Shell provided Services.
+                    </p>
+                    <div id="blob"></div>
+                    <div id='circles'></div>
                 </div>
             </div>
             </div>

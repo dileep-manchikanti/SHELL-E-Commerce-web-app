@@ -9,6 +9,7 @@ import Products from './components/products';
 import Data from './components/data';
 import Profile from './components/profile';
 import Cart from './components/cart';
+import Product from './components/product';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/data" element={<Data />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/product" element={<Product />} />
       </Routes>
     </BrowserRouter>
   ); 

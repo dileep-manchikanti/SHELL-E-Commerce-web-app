@@ -3,6 +3,7 @@ import "../css/profile.css";
 import Footer from "./footer";
 import Logout from "./logout";
 import Navbar from "./Navbar";
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   render() {
@@ -44,7 +45,7 @@ class Profile extends Component {
             <div className="content">Complaints & Chat with us</div></div>
           <div className="cardImg img5"></div>
         </div>
-        <Logout />
+        <Link to='/'><Logout /></Link>
         </div>
         <Footer />  
       </div>

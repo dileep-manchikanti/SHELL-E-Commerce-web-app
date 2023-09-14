@@ -1,0 +1,40 @@
+.product{
+    background-image: url('../components/windturbines_Science_GettyImages-1203659530.webp') !important;
+    height: 90vh !important;
+    width: 100%;
+    position: absolute;
+    background-position: center !important;
+    background-size:cover !important;
+    /* opacity: 0.8 !important; */
+}
+.tab{
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 10px !important;
+    align-items: center;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+    margin-top: 30px !important;
+    margin-bottom: 60px !important;
+    justify-content: center;
+    height: 65vh;
+    background-color: white !important;
+    opacity: 1 !important;
+    position: relative;
+    padding: 20px !important;
+    opacity: 0.9 !important;
+}
+.productImg{
+    height:150px !important;
+    width: 150px !important;
+    background-image: url('../components/products-bg.jpg');
+    background-size: cover;
+    position: relative;
+    top:-60px !important;
+    border-radius: 5px;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.productInfo{
+    padding-left: 40px !important;
+    position: relative;
+    top:-40px !important;
+}

@@ -1,23 +1,23 @@
 .shop{
     background-image: url('../components/cart.jpg') !important;
-    height: 122vh !important;
+    height: 130vh !important;
     width: 100%;
-    position: absolute;
     background-position: center !important;
     background-size:cover !important;
-    opacity: 0.3 !important;
+    /* opacity: 0.8 !important; */
 }
 .backdrop{
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
     border-radius: 10px !important;
     align-items: center;
-    margin: 50px 50px;
+    margin: 50px 50px !important;
     justify-content: center;
-    height: fit-content;
+    height: fit-content !important;
     background-color: white !important;
     opacity: 1 !important;
     position: relative;
     padding-bottom: 20px !important;
+    opacity: 0.9 !important;
 }
 hr{
     margin-left: 20px;
