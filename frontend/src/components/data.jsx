@@ -3,35 +3,35 @@ import React,{
 } from "react";
 import axios from 'axios';
 
-class Data extends Component{
+class Data{
+    response=[];
 
-    state={'categories':{}};
+constructor(){
+    this.getCategories();
+    //     
+}
 
-    constructor(){
-        super();
-        this.getCategories();
-    }
 
-     async getCategories(){
-        const response=await axios.get('https://21fa-2a09-bac1-3680-58-00-2a5-e6.ngrok-free.app/api/Product/GetCategories',{
-            headers:{
-                "ngrok-skip-browser-warning":'fsf'
-            }
+async getCategories(){
+    let response=axios.get('https://21fa-2a09-bac1-3680-58-00-2a5-e6.ngrok-free.app/api/Product/GetCategories',{
+        headers:{
+            "ngrok-skip-browser-warning":'fsf'
+        }
+    })
+    .then(response => {
+            //console.log(response.data);
+            this.response=response.data;
         })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log('error',error);
-        });
-        console.log(response)
+    .catch(error => {
+        console.log('error',error);
+    });
+    this.response=await  response.data;
+    console.log(this.response);
+}
+    
+        // console.log(response);
         // this.setState(this.state.categories=response.data);
             }
-    render(){        
-        return(
-            <div></div>
-        );
-    }
-}
+
 
 export default Data;

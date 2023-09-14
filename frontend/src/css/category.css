@@ -15,7 +15,7 @@
 div.cardImg{
     height: 200px;
     width:350px;
-    background-image: url('../components/R.jpg') !important;
+    /* background-image: url('../components/R.jpg') !important; */
     background-position: center;
     background-size: cover;
     position: relative;
