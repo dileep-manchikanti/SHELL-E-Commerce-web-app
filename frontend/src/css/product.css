@@ -24,17 +24,21 @@
     opacity: 0.9 !important;
 }
 .productImg{
-    height:150px !important;
-    width: 150px !important;
-    background-image: url('../components/products-bg.jpg');
+    height:220px !important;
+    width: 300px !important;
+    background-image: url('../components/PRODUCT.jpeg') !important;
     background-size: cover;
+    /* background-position: center; */
     position: relative;
-    top:-60px !important;
+    top:-35px !important;
     border-radius: 5px;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
 }
 .productInfo{
     padding-left: 40px !important;
     position: relative;
-    top:-40px !important;
+    top:-50px !important;
+    font-family: 'Outfit';
+    font-size: 22px;
+    font-style: normal;
 }

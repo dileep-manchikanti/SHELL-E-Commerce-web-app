@@ -1,5 +1,5 @@
-.order {
-    width: fit-content;
+div.order {
+    width: 80vw;
     height: fit-content;
     margin-left: 5vw !important;
     box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
@@ -17,7 +17,7 @@
 } */
 
 .orderImg {
-    /* background-image: url('../Components/Open\ Parcel.png') !important; */
+    background-image: url('../components/PRODUCT.jpeg') !important;
     height: 150px;
     width: 200px !important;
     background-size: cover;
@@ -35,7 +35,7 @@
 .prodDesc {
     color: #9D9D9D;
     font-family: 'Outfit';
-    font-size: 32px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -45,8 +45,20 @@
 
     color: #000;
     font-family: 'Outfit';
-    font-size: 32px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+.trash{
+    margin-left: 10vw;
+    margin-top: 3vh;
+    height: 5vh;
+}
+.trash:hover{
+    color:red;
+}
+#price{
+    margin-left: 45vw;
+    /* margin-top: -5vh !important; */
 }

@@ -1,13 +1,40 @@
 import React,{Component} from "react";
 import '../css/signIn.css';
 import Navbar from "./Navbar";
-import { Link } from "react-router-dom";
-
+import { Link, Navigate } from "react-router-dom";
+import axios from "axios";
 class SignIn extends Component{
-    handleUser(e){
-        console.log(e.key);
-        const element=document.getElementById("userid");
-        element.innerHTML="|";
+    handleInputChange = (event) => {
+        this.setState({
+          value: event.target.value,
+        });
+      };
+    handlePassword = (event) => {
+    this.setState({
+        password: event.target.value,
+    });
+    };
+     async handleSignIn(){
+        const user=document.getElementById('userid');
+        const password=document.getElementById('password');
+        if(user.value=="kushagra@gmail.com" && password.value=="kushagra123"){
+            alert(
+                "sucessfull"
+            );
+        }
+        else{
+            // alert("credentials mismatched");
+            alert(user.innerHTML);
+        }
+
+    }
+    constructor(){
+        super();
+        this.state={
+            "value":"",
+            "password":""
+        }
+        
     }
     render(){
         return(
@@ -18,17 +45,17 @@ class SignIn extends Component{
                     <h2>Login</h2>
                     <h4>UserName</h4> 
                     {/* <p id='userid' onClick={()=>{this.handleUser()}}>Enter User Name</p> */}
-                    <input id='userid' value="Enter UserName"></input>
+                    <input id='userid' type="text" value={this.state.value} onChange={this.handleInputChange}/>
                     <hr></hr>
                     <br></br>
                     {/* <br></br> */}
-                    <h4>Password</h4> 
-                    <p id='password'>Enter Password</p>
+                    <h4>Password</h4>
+                    <input id='password' type="text" value={this.state.password} onChange={this.handlePassword}/> 
                     <hr></hr>
                     <div>
-                        <Link to='/categories'><button>Log In</button></Link>
+                        <Link to='/categories'><button onClick={this.handleSignIn}>Log In</button></Link>
                     </div>
-                    <Link to='/signUp'><a>Dont Have Account?</a></Link>
+                    <Link to='/signUp'><a>Don't have Account?</a></Link>
                 </div>
                 <div id="info" className="col-6">
                     <h3>Trading Market</h3>

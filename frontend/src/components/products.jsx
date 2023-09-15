@@ -1,49 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import Navbar from './Navbar';
 import '../css/products.css'
 import Item from './item';
 // import {withRouter} from 'react-router';
-import {useParams} from "react-router-dom"
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
-function Products(){   
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    let {id} = useParams();
-    useEffect(() => {
-        // Function to make the API request
-        async function fetchData() {
-            const response = await fetch('https://21fa-2a09-bac1-3680-58-00-2a5-e6.ngrok-free.app/api/Product/GetCategories')
-            .then(response => {
-                const jsonData = response.data;
-            setData(jsonData);
-            setLoading(false);
+class Products extends Component{   
+    state={'response':[]};
+    constructor(){
+        super();
+    }
+    componentDidMount(){
+        this.getCategories();
+    }
+    getCategories(){
+        axios.get('https://d46d-2a09-bac5-3b4c-1aa0-00-2a7-20.ngrok-free.app/api/Product/Fire Resistant Hydraulic Fluids',{
+            headers:{
+                "ngrok-skip-browser-warning":'fsf'
+            }
+        })
+        .then(response => {
+                console.log(response.data);
+                // this.response=response.data;
+                this.setState({'response':response.data})
             })
         .catch(error => {
             console.log('error',error);
         });
-            
-            
+    }
 
-        }
-    
-        // Call the API function when the component mounts
-        fetchData();
-      }, []);
-      console.log(data);
+    render(){
     return(
         <div className='products'>
             <Navbar />
             <div className='category'>
-                <h1>{id}</h1>
+                <h1>Fire Resistant Hydraulic Fluids</h1>
                 <hr id='underline'></hr>
-                <Item />
-                <Item />
-                <Item />
+                <div className='row'>
+                {this.state.response.map((response)=>{
+                   return <Link to='/product'><Item item={response} /></Link>
+                })}
+                </div>
             </div>
         </div>
         );
     }
+}
 
 export default Products;

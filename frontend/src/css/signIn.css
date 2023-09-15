@@ -11,7 +11,7 @@ div.home{
 #login{
     color: black;
     font-weight: bold;
-    font-family: Roboto;
+    font-family: Outfit;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -24,8 +24,9 @@ div.home{
     padding-top:20vh;
     height: 67vh;
 }
-h3{
+#info h3{
     /* margin-top:20vh !important; */
+    color: #fff !important;
 }
 p{
     margin-top: 10% !important;
@@ -95,4 +96,7 @@ hr{
     width:100px !important;
     position: relative;
     top:-350px;
+}
+input{
+    border: 2px black !important;
 }

@@ -1,0 +1,9 @@
+img{
+    height: 200px;
+    width:350px;
+    margin-left: 25px !important;
+    border-radius: 5px;
+    margin-top: 3%;
+    /* box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5); */
+    margin-top: 10px !important;
+}

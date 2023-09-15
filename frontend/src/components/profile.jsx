@@ -12,38 +12,38 @@ class Profile extends Component {
         <Navbar />
         <div className="profile">
         <div className="card card1 col-4">
-          <div className="CARD"><span className="cardTitle">Your Orders</span>
+          <div className="CARD"><span className="Title">Your Orders</span>
             <br />
-            <div className="content">Track or Order again</div></div>
-          <div className="cardImg img1"></div>
+            <div className="Content">Track or Order again</div></div>
+          <div className="Img img1"></div>
           {/* <div className="content"></div> */}
         </div>
         <div className="card card2 col-4">
-          <div className="CARD"><span className="cardTitle">Login & Security</span>
+          <div className="CARD"><span className="Title">Login & Security</span>
             <br />
-            <div className="content">Edit login, name and mobile no.</div></div>
-          <div className="cardImg img2"></div>
+            <div className="Content">Edit login, name and mobile no.</div></div>
+          <div className="Img img2"></div>
           {/* <div className="content"></div> */}
         </div>
         <div className="card card3 col-4">
-          <div className="CARD"><span className="cardTitle">Your Addresses</span>
+          <div className="CARD"><span className="Title">Your Addresses</span>
             <br />
-            <div className="content">Edit or Add Addresses</div></div>
-          <div className="cardImg img3"></div>
+            <div className="Content">Edit or Add Addresses</div></div>
+          <div className="Img img3"></div>
           {/* <div className="content"></div> */}
         </div>
         <div className="card card4 col-4">
-          <div className="CARD"><span className="cardTitle">Payment Options</span>
+          <div className="CARD"><span className="Title">Payment Options</span>
             <br />
-            <div className="content">View or add payment methods</div></div>
-          <div className="cardImg img4"></div>
+            <div className="Content">View or add payment methods</div></div>
+          <div className="Img img4"></div>
           {/* <div className="content"></div> */}
         </div>
         <div className="card card5 col-4">
-          <div className="CARD"><span className="cardTitle">Contact Us</span>
+          <div className="CARD"><span className="Title">Contact Us</span>
             <br />
-            <div className="content">Complaints & Chat with us</div></div>
-          <div className="cardImg img5"></div>
+            <div className="Content">Complaints & Chat with us</div></div>
+          <div className="Img img5"></div>
         </div>
         <Link to='/'><Logout /></Link>
         </div>

@@ -1,5 +1,5 @@
 .img{
-    height:100vh !important;
+    height:140vh !important;
     width: 395px !important;
     background-image: url('../components/Rectangle\ 9.jpg') !important;
     background-position: center;
@@ -10,7 +10,7 @@
     margin: 0px !important;
     padding: 0px;
 }
-h3{
+#heading{
     color: #FFF !important;
     font-family: Outfit;
     font-size: 40px;

@@ -1,5 +1,6 @@
 import React,{Component} from "react";
 import '../css/category.css'
+import DecodedImage from "./decoder";
 
 class Category extends Component{
     constructor(props){
@@ -15,9 +16,7 @@ class Category extends Component{
         // image.style.backgroundImage="url('../components/R.jpg')";
         return(
             <div className="card col-6" key={category.id}>
-                <div className="cardImg" id='img'>
-                    <img src='.\R.jpg'></img>
-                </div>
+                <DecodedImage className='cardImg' base={category.image} />
                 <div className="cardTitle">{category.name}</div>
                 <div className="content">{category.description}</div>
             </div>

@@ -19,13 +19,13 @@ class Categories extends Component{
 
    
     getCategories(){
-        axios.get('https://21fa-2a09-bac1-3680-58-00-2a5-e6.ngrok-free.app/api/Product/GetCategories',{
+        axios.get('https://d46d-2a09-bac5-3b4c-1aa0-00-2a7-20.ngrok-free.app/api/Product/GetCategories',{
             headers:{
                 "ngrok-skip-browser-warning":'fsf'
             }
         })
         .then(response => {
-                // console.log(response.data);
+                console.log(response.data);
                 // this.response=response.data;
                 this.setState({'response':response.data})
             })
@@ -41,7 +41,7 @@ class Categories extends Component{
             <Navbar />
             <div className='catalogue row'>
                 {this.state.response.map((response)=>{
-                   return <Link to='/products/oil' ><Category category={response} /></Link>
+                   return <Link to='/products'><Category category={response} /></Link>
                 })}
             </div>
             <Footer />

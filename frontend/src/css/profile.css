@@ -4,8 +4,8 @@
     height: 130px !important;
     flex-shrink: 0;
     cursor: pointer;
-    top: 50px;
-    left: -20px;
+    top: 20px;
+    left: 40px;
     border-radius: 10px;
     border: 1px solid #000;
     background: #fff;
@@ -18,8 +18,8 @@
     height: 130px !important;
     flex-shrink: 0;
     cursor: pointer;
-    top: -80px;
-    left: 350px;
+    top: -130px;
+    left: 420px;
     border-radius: 10px;
     border: 1px solid #000;
     background: #fff;
@@ -32,8 +32,8 @@
     height: 130px !important;
     flex-shrink: 0;
     cursor: pointer;
-    top: -210px;
-    left: 725px;
+    top: -280px;
+    left: 800px;
     border-radius: 10px;
     border: 1px solid #000;
     background: #fff;
@@ -46,8 +46,8 @@
     height: 130px !important;
     flex-shrink: 0;
     cursor: pointer;
-    top:-180px;
-    left: -22px;
+    top:-280px;
+    left: 40px;
     border-radius: 10px;
     border: 1px solid #000;
     background: #fff;
@@ -60,8 +60,8 @@
     height: 130px !important;
     flex-shrink: 0;
     cursor: pointer;
-    top: -310px;
-    left: 350px;
+    top: -430px;
+    left: 420px;
     border-radius: 10px;
     border: 1px solid #000;
     background: #fff;
@@ -69,9 +69,9 @@
     position: absolute;
   }
   
-  .card {
+  /* .card {
     margin: 0px 100px;
-  }
+  } */
   
   .card:hover {
     transform: scale(1.05);
@@ -85,7 +85,6 @@
   
   .img2 {
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAIpSURBVHgB7ZqLbYMwFEVvqg6QDeINmg1gg3YDRsgIjJARUCdoN3A6AdmAbEA3oH4FJNRiY+NP7IgrXZQ42Obw/Pg4BvxrL1wKc+FauBA+IFERDAEQTCcxH/bZIwFlwpVwCznQX7dDnQyRiQ6IhpoJjMwNesgX3EnTvOk8OVg+6uSNaridV9Tzmo8ZzPNmmjv5pC3bKFrno03ecOET5s9u59ANNPPRJm/4UHdpqHSePJuPBezyJoe+ugDmA5MxTGUIExpstPZZkOWNiaIAI5gSbi+xwcB2w4c57eBeHQLpCQ+qDSw1bWCpaQNLTRtYatrAUtNDg93wePp+po3kRx9P4q7fGOiVqp0pv6UeMdlEzi/YBenqTVJ+JbAr0lUuKf+izThOQ7yyu9RR1Q9FjC4eKUbtJCn/nH55RVoRY+hnguf6KKY7hhqOrlRK2m9Mdo4NjEEehHKuQoiouVAFebQOskol4gYrFG2XqooUtQZxgjHFsTU6DWSID2zphOe6Ddn8reoD7AMrh+CcOOIAqxTt1VghBvf5ZiIaflzRFh3bASvF4BbOVb9WULqduAajZ8DWN9QoBjdwS33whfpOoaYd13APNq5WWKpbw/MqHZ2D0AHL0N9WdB7jzgikAuuGJsHQieGa+1MfOQKLwd+NfIzSXdcyMqhvoqbmiGwFKsN6QNuFMUHE0OegzhWUouNiYcw/+VjLMRVDf8Gg+b/jUHZBP3n0DvkstLV+AP/KoFIIfewRAAAAAElFTkSuQmCC);
-  
   }
   
   .img3 {
@@ -103,7 +102,7 @@
   
   }
   
-  div.cardImg {
+  div.Img {
     height: 54px;
     width: 54px;
     /* background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAAA2CAYAAACMRWrdAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAOaSURBVHgB7ZpbiE1RHMY/gxmXzIQxuTYpt5AQmWLMJuNOSpKUkCd5kQfxgjeXFEkpb1PyIDTkfpkHjdxFLpFyiRAhhhm3Gd/XOpPtzD777L3P3mfmZH/1e5mZ81/rO/u/1vrv/xogVqxYsWJFpxIyAP6lz5SijSmP9CabyRNyk0z08fnR5B55QLaQvqQdWlnDyD7yhjTZuEOGe/z806TPviJ7yEBkWR3JNHKENCRNys5zuJsrQ0tTdr6So2QOIn6CxWQlOUU+uUwo+cmNdYg1k9z2GOMzOUuWkCKEKOX8GnIF5lts8sk1/LvmynyYSn6Cl8hqmI2mAwKoACb/NwachNOTG5OBqWRukQ0w67AAHqRcHkx2kXchTMDOQ7ivqSC8JDvIiFSG8kklOUB+hjx4NvhFDpIK2FJ0Pqkl7yMcuI7cSPAhwnHqyQUyS8Z0KDZEMEgjTDpryy4nnUg3mKOiirxN/E3Y434na2VMabiX/A4xeF0i5ijSHi2lakUVx86Qv1Sl5CbY0rELzGmf6Td4n6wn/eFdfWB2uEcZjq25b4fDLqnDrypAwB8w58sqmJoxH/6l3bgkEeMyTDr5ncd+UphqAG311R4DfcHfiqAXwpMKghXkBMw69DKXajdTzeoHU6E7BdBRoHLqOJkHsxlEpc5kATlMPrrM5yJ8pP4Q8tgh0DkyGdl/rVBJVuswn6tkKHxqhkMg5f4xmMM8UK3mU3pqU2FS3mnXrkQAWUid0ypIa8hc0h3hSym+CGZTqnOZh4UAspB+0eoMUtW/HOEYLErEUsx6D+NbCCDLQ2A7d2Feb4JsKDK0DqZF4GdMCwFk+RykGVXcW8mgNPG1AZWSbeR1wLEsZNGYaEwY3E1GOsQuT/zuBTIr5Sxk2Zjd4CGH2NUIpwC2kEJ5iFZKt2KHnxci4rMwamOtpthYrik2lmuKjeWa/ktjTWjbcp2fmzFdA52GqeXamjQntSeeIaBU9oyHMfgNweq5Goe4NQFj6R1NTZ5xCKkkU99Rd1pnkLqxEqUxGTpJJpGuiEAKOpuch7c33EyN6Q1d7YEpMDepkUtNURnUpV66148gxhRTHTFdLni6/wpb6lRNh0nRVAb9GFMMXQWr+5SVJ5RO6nMshFkHann7Naa0VltPDdK0Hd3WkLrIS2F2rua2mZsxGdJ6XUx6IAfUkywj12HWSrJ0Z6YWm/4LoU0+oXTSLlrh8PMJiGjbjhUrVnb0B847H5LCVOYdAAAAAElFTkSuQmCC) !important; */
@@ -111,10 +110,10 @@
     top: 2%;
     position: absolute;
   }
-  .cardTitle {
+  .Title {
     color: #000;
     text-align: center;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     font-family: Outfit;
     font-size: 24px;
     font-style: normal;
@@ -127,7 +126,7 @@
     justify-content: center;
   }
   
-  .content {
+  .Content {
     color: #000;
     display: flex;
     text-align: center;

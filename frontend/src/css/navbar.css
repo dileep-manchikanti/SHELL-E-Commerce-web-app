@@ -9,7 +9,7 @@
 #navBrand{
     margin-left:140px;
     color: #FFF;
-    font-family: Outfit;
+    font-family: 'Outfit';
     font-size: 32px;
     font-style: normal;
     font-weight: 700;
@@ -21,7 +21,7 @@
     flex-shrink: 0;
     color: #FFF;
     text-align: center;
-    font-family: Outfit;
+    font-family: 'Outfit';
     font-size: 22px;
     font-style: normal;
     font-weight: 500;
@@ -33,7 +33,7 @@
     margin-right: 20px !important;
     margin-bottom: 10px !important;
     color: #FFF !important;
-    font-family: Outfit;
+    font-family: 'Outfit';
     font-size: 32px;
     font-style: normal;
     font-weight: 500;
