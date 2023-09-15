@@ -2,6 +2,7 @@
 using Bootcamp_Project.EF_Core.ProductDetails;
 using Bootcamp_Project.Models.Products;
 using Bootcamp_Project.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

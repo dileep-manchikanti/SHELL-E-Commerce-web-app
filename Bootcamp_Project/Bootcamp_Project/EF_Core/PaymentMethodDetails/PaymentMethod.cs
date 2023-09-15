@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
 {
@@ -14,11 +15,15 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         public virtual User user { get; set; }
         [Required]
         public virtual PaymentType paymentType { get; set; }
-        
+        [AllowNull]
         public string UpiId {get; set; }
+        [AllowNull]
         public string AccountNumber { get; set; }
+        [AllowNull]
         public string CardNumber { get; set; }
+        [AllowNull]
         public string ExpiryDate { get; set; }
+        [AllowNull]
         public string CVV {  get; set; }
 
 

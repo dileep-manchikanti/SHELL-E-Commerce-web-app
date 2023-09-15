@@ -12,9 +12,9 @@ namespace Bootcamp_Project.Controllers
     {
         private readonly UserService userService;
         private readonly ILogger<UsersController> logger;
-        public UsersController(EF_DataContext context, ILogger<UsersController> logger)
+        public UsersController(EF_DataContext context, ILogger<UsersController> logger,IConfiguration configuration)
         {
-            userService = new UserService(context,logger);
+            userService = new UserService(context,logger, configuration);
             this.logger = logger;
         }
 
@@ -71,7 +71,7 @@ namespace Bootcamp_Project.Controllers
 
 
         //POST : api/<UserController>/address/{address_id}
-        [HttpPost("address/{address_id}")]
+        [HttpPut("address/{address_id}")]
         public IActionResult UpdateAddress([FromBody] AddressRequest data,int address_id)
         {
             return userService.UpdateAddress(data,address_id);

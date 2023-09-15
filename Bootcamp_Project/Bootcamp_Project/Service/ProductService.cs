@@ -153,7 +153,7 @@ namespace Bootcamp_Project.Service
             if (deliveryPriceResponse != null)
             {
                 _logger.LogInformation("Delivery Rate: {deliveryPriceResponse.Value}", deliveryPriceResponse.Value);
-                return int.Parse(productPrice) * (decimal)float.Parse(deliveryPriceResponse.Value) * quantity / 100;
+                return decimal.Parse(productPrice) * (decimal)float.Parse(deliveryPriceResponse.Value) * quantity / 100;
             }
             return 0;
         }

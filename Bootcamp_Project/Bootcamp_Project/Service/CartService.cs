@@ -162,8 +162,8 @@ namespace Bootcamp_Project.Service
                     productPrice = cartItem.product.basePrice,
                     quantity = cartItem.cartItem.quantity,
                     totalDeliveryPrice = _productService.ProductDeliveryPriceForCart(cartItem.product, cartItem.product.basePrice.ToString(), cartItem.cartItem.quantity),
-                    totalTax = _productService.TaxEstimationForProductInCart(cartItem.cartItem, cartItem.cartItem.quantity)
-
+                    totalTax = _productService.TaxEstimationForProductInCart(cartItem.cartItem, cartItem.cartItem.quantity),
+                    productImage = cartItem.product.productImage
                 });
             }
 

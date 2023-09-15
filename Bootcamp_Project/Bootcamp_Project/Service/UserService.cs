@@ -13,10 +13,12 @@ namespace Bootcamp_Project.Service
     {
         private readonly ILogger _logger;
         private readonly EF_DataContext _context;
-        public UserService(EF_DataContext context, ILogger logger)
+        private readonly AuthService authService;
+        public UserService(EF_DataContext context, ILogger logger, IConfiguration configuration)
         {
             _context = context;
             _logger = logger;
+            authService = new AuthService(context, logger, configuration);
         }
 
         public IActionResult GetUsers()
@@ -94,7 +96,8 @@ namespace Bootcamp_Project.Service
 
                 _context.Add(user);
                 _context.SaveChanges();
-                return Ok(newUser);
+                string token = authService.GenerateToken(new LoginRequest(newUser.Email,newUser.password));
+                return Ok(new {user=user,token=token});
             }
             catch (Exception ex)
             {
@@ -119,7 +122,8 @@ namespace Bootcamp_Project.Service
                     var hashedPassword = BCryptNet.HashPassword(data.password, user.salt);
                     if (hashedPassword == user.Password)
                     {
-                        return Ok("Login Successfull");
+                        var token = authService.GenerateToken(data);
+                        return Ok(new {user,token});
                     }
                 }
                 return BadRequest(new {errorCode=400,errorMessage="Invalid credentials" });
