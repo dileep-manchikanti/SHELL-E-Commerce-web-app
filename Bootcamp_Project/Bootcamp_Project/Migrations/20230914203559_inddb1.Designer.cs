@@ -3,6 +3,7 @@ using System;
 using Bootcamp_Project.EF_Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    partial class EF_DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230914203559_inddb1")]
+    partial class inddb1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,6 +346,8 @@ namespace Bootcamp_Project.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("addressId");
+
                     b.HasIndex("userId");
 
                     b.ToTable("order");
@@ -571,11 +575,19 @@ namespace Bootcamp_Project.Migrations
 
             modelBuilder.Entity("Bootcamp_Project.EF_Core.ShoppingDetails.Order", b =>
                 {
+                    b.HasOne("Bootcamp_Project.EF_Core.UserDetails.Address", "address")
+                        .WithMany()
+                        .HasForeignKey("addressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Bootcamp_Project.EF_Core.UserDetails.User", "user")
                         .WithMany()
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("address");
 
                     b.Navigation("user");
                 });

@@ -32,6 +32,6 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public long createdDate { get; set; }
         public long updatedDate { get; set; }
         [DefaultValue(true)]
-        public bool status { get; set; }
+        public bool status { get; set; } = true;
     }
 }

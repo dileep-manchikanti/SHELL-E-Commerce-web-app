@@ -43,9 +43,9 @@ namespace Bootcamp_Project.Service
         public List<ProductListResponse> GetProductByCategory(string categoryName)
         {
             _logger.LogInformation("Inside GetProductByCategory");
-
+            var category = _context.Categories.FirstOrDefault(c => c.status==true && c.name==categoryName);
             var response = _context.Products
-                .Where(p => p.status == true && p.category.name == categoryName)
+                .Where(p => p.status == true && p.categoryId == category.Id)
                 .ToList();
             var productCount = response.Count();
             _logger.LogInformation("Total active product found for category {categoryName} are {productCount}", categoryName, productCount);
@@ -83,17 +83,21 @@ namespace Bootcamp_Project.Service
             ProductTax productTax = new ProductTax();
             if(product.sgst != 0)
             {
+                Console.WriteLine("sgst : ", product.sgst);
                 productTax.sgstRate = product.sgst;
                 productTax.sgst = product.basePrice * (decimal)productTax.sgstRate / 100;
                 totalPrice += productTax.sgst;
             }
             if (product.cgst != 0)
             {
+                Console.WriteLine("sgst : ", product.cgst);
                 productTax.cgstRate = product.cgst;
                 productTax.cgst = product.basePrice * (decimal)productTax.cgstRate / 100;
                 totalPrice += productTax.cgst;
             }
+            Console.WriteLine($"{productTax.cgst},{productTax.sgst},{productTax.cgstRate},{productTax.sgstRate}");
             totalPrice += productDetail.deliveryPrice;
+            productDetail.taxDetails = productTax;
             productDetail.totalPrice = totalPrice;
         }
 
@@ -117,7 +121,7 @@ namespace Bootcamp_Project.Service
             if (deliveryPriceResponse != null)
             {
                 _logger.LogInformation("Delivery Rate: {deliveryPriceResponse.Value}", deliveryPriceResponse.Value);
-                productDetail.deliveryPrice = (productDetail.basePrice * int.Parse(deliveryPriceResponse.Value)) / 100;
+                productDetail.deliveryPrice = (productDetail.basePrice * (decimal)float.Parse(deliveryPriceResponse.Value)) / 100;
             }
         }
 
@@ -125,16 +129,17 @@ namespace Bootcamp_Project.Service
         {
             decimal totalTax = 0;
             ProductTax productTax = new ProductTax();
-            if (cartItem.product.sgst != 0)
+            var product = _context.Products.FirstOrDefault(p => p.Id == cartItem.productId);
+            if (product.sgst != 0)
             {
-                productTax.sgstRate = cartItem.product.sgst;
-                productTax.sgst = cartItem.product.basePrice * (decimal)productTax.sgstRate / 100;
+                productTax.sgstRate = product.sgst;
+                productTax.sgst = product.basePrice * (decimal)productTax.sgstRate / 100;
                 totalTax += productTax.sgst;
             }
-            if (cartItem.product.cgst != 0)
+            if (product.cgst != 0)
             {
-                productTax.cgstRate = cartItem.product.cgst;
-                productTax.cgst = cartItem.product.basePrice * (decimal)productTax.cgstRate / 100;
+                productTax.cgstRate = product.cgst;
+                productTax.cgst = product.basePrice * (decimal)productTax.cgstRate / 100;
                 totalTax += productTax.cgst;
             }
             return totalTax * quantity;
@@ -142,14 +147,15 @@ namespace Bootcamp_Project.Service
 
         public decimal ProductDeliveryPriceForCart(Product product, string productPrice, int quantity)
         {
+
             var deliveryPriceResponse = _context.GlobalVariables
                 .FirstOrDefault(p => p.Status && p.Name == CommonUtils.DELIVERY_PRICE_PERCENTAGE);
             if (deliveryPriceResponse != null)
             {
                 _logger.LogInformation("Delivery Rate: {deliveryPriceResponse.Value}", deliveryPriceResponse.Value);
-                return int.Parse(productPrice) * int.Parse(deliveryPriceResponse.Value) * quantity / 100;
+                return int.Parse(productPrice) * (decimal)float.Parse(deliveryPriceResponse.Value) * quantity / 100;
             }
-            return new decimal(0);
+            return 0;
         }
     }
 }

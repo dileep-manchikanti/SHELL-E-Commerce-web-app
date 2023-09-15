@@ -1,8 +1,10 @@
-﻿namespace Bootcamp_Project.Models.Order
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Bootcamp_Project.Models.Order
 {
     public class OrderAddressUpdate
     {
-        public int orderId;
-        public int addressId;
+        [Required] public int orderId {  get; set; }
+        [Required] public int addressId { get; set; }
     }
 }

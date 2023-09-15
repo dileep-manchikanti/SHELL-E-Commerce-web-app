@@ -14,16 +14,16 @@ namespace Bootcamp_Project.EF_Core.ShoppingDetails
         [Key,Required]
         public int Id { get; set; }
         [Required]
-        public virtual Order order { get; set; }
+        public virtual int orderId { get; set; }
         [Required]
-        public virtual Product product { get; set; }
+        public virtual int productId { get; set; }
         [Required]
         public int quantity { get; set; }
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }
         [DefaultValue(true)]
-        public bool status { get; set; }
+        public bool status { get; set; } = true;
 
     }
 }

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Bootcamp_Project.Migrations
 {
     [DbContext(typeof(EF_DataContext))]
-    [Migration("20230914040506_updateDB")]
-    partial class updateDB
+    [Migration("20230914192123_indb1")]
+    partial class indb1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,48 +23,6 @@ namespace Bootcamp_Project.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("Bootcamp_Project.EF_Core.FeedbackDetails.Feedback", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("comments")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("createdDate")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("orderId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("productId")
-                        .HasColumnType("integer");
-
-                    b.Property<float>("rating")
-                        .HasColumnType("real");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("boolean");
-
-                    b.Property<long>("updatedDate")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("orderId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("feedback");
-                });
 
             modelBuilder.Entity("Bootcamp_Project.EF_Core.GlobalVariables.GlobalVariable", b =>
                 {
@@ -97,6 +55,26 @@ namespace Bootcamp_Project.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CardNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExpiryDate")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UpiId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<long>("createdDate")
                         .HasColumnType("bigint");
@@ -273,8 +251,6 @@ namespace Bootcamp_Project.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("categoryId");
-
                     b.ToTable("product");
                 });
 
@@ -357,7 +333,7 @@ namespace Bootcamp_Project.Migrations
                     b.Property<int>("orderStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("paymentMethodId")
+                    b.Property<int>("paymentType")
                         .HasColumnType("integer");
 
                     b.Property<bool>("status")
@@ -375,8 +351,6 @@ namespace Bootcamp_Project.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("addressId");
-
-                    b.HasIndex("paymentMethodId");
 
                     b.HasIndex("userId");
 
@@ -493,11 +467,19 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("hashedEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("lastName")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("salt")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -540,25 +522,6 @@ namespace Bootcamp_Project.Migrations
                     b.HasIndex("addressid");
 
                     b.ToTable("userAddress");
-                });
-
-            modelBuilder.Entity("Bootcamp_Project.EF_Core.FeedbackDetails.Feedback", b =>
-                {
-                    b.HasOne("Bootcamp_Project.EF_Core.ShoppingDetails.Order", "order")
-                        .WithMany()
-                        .HasForeignKey("orderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Bootcamp_Project.EF_Core.UserDetails.User", "user")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("order");
-
-                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("Bootcamp_Project.EF_Core.PaymentMethodDetails.PaymentMethod", b =>
@@ -607,17 +570,6 @@ namespace Bootcamp_Project.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("Bootcamp_Project.EF_Core.ProductDetails.Product", b =>
-                {
-                    b.HasOne("Bootcamp_Project.EF_Core.ProductDetails.Category", "category")
-                        .WithMany()
-                        .HasForeignKey("categoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("category");
-                });
-
             modelBuilder.Entity("Bootcamp_Project.EF_Core.ShoppingDetails.Cart", b =>
                 {
                     b.HasOne("Bootcamp_Project.EF_Core.UserDetails.User", "user")
@@ -656,12 +608,6 @@ namespace Bootcamp_Project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Bootcamp_Project.EF_Core.PaymentMethodDetails.PaymentMethod", "paymentMethod")
-                        .WithMany()
-                        .HasForeignKey("paymentMethodId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Bootcamp_Project.EF_Core.UserDetails.User", "user")
                         .WithMany()
                         .HasForeignKey("userId")
@@ -669,8 +615,6 @@ namespace Bootcamp_Project.Migrations
                         .IsRequired();
 
                     b.Navigation("address");
-
-                    b.Navigation("paymentMethod");
 
                     b.Navigation("user");
                 });

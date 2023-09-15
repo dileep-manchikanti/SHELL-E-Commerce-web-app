@@ -18,12 +18,12 @@ namespace Bootcamp_Project.EF_Core.PaymentMethodDetails
         [Required]
         public virtual PaymentMethod paymentMethod { get; set; }
         [DefaultValue(TransactionStatus.Initiated)]
-        public TransactionStatus transactionStatus { get; set; }
+        public TransactionStatus transactionStatus { get; set; } = TransactionStatus.Initiated;
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }
         [DefaultValue(true)]
-        public bool status { get; set; }
+        public bool status { get; set; } = true;
     }
 
     public enum TransactionStatus

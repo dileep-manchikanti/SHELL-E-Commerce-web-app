@@ -160,7 +160,8 @@ namespace Bootcamp_Project.Service
                         city = address.city,
                         state = address.state,
                         postalCode = address.postalCode,
-                        landmark = address.landmark
+                        landmark = address.landmark,
+                        addressId = address.Id
                     });
                 }
                 return Ok(addresses);
@@ -200,7 +201,7 @@ namespace Bootcamp_Project.Service
                 }
                 _context.User_Addresses.Add(newUserAddress);
                 _context.SaveChanges();
-                return Ok(address);
+                return Ok(newAddress);
             }
             catch (Exception ex)
             {

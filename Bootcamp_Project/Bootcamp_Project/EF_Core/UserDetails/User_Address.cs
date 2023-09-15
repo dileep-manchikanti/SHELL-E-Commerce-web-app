@@ -12,11 +12,11 @@ namespace Bootcamp_Project.EF_Core.UserDetails
         public virtual User user { get; set; }
         public virtual Address address { get; set; }
         [DefaultValue(false)]
-        public bool isDefault { get; set; }
+        public bool isDefault { get; set; } = false;
         [Required]
         public long createdDate { get; set; }
         public long updatedDate { get; set; }
         [DefaultValue(true)]
-        public bool status { get; set; }
+        public bool status { get; set; } = true;
     }
 }

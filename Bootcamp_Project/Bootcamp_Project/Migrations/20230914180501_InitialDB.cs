@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Bootcamp_Project.Migrations
 {
-    public partial class UpdateDB11 : Migration
+    public partial class InitialDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,12 +50,28 @@ namespace Bootcamp_Project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "GlobalVariables",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GlobalVariables", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "paymentType",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     paymentMethod = table.Column<int>(type: "integer", nullable: false),
+                    image = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
                     status = table.Column<bool>(type: "boolean", nullable: false)
@@ -72,12 +88,14 @@ namespace Bootcamp_Project.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Email = table.Column<string>(type: "text", nullable: false),
+                    hashedEmail = table.Column<string>(type: "text", nullable: false),
                     phoneNumber = table.Column<string>(type: "text", nullable: false),
                     firstName = table.Column<string>(type: "text", nullable: false),
                     lastName = table.Column<string>(type: "text", nullable: false),
                     fullName = table.Column<string>(type: "text", nullable: false),
                     dateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
+                    salt = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
                     status = table.Column<bool>(type: "boolean", nullable: false)
@@ -96,10 +114,12 @@ namespace Bootcamp_Project.Migrations
                     categoryId = table.Column<int>(type: "integer", nullable: false),
                     name = table.Column<string>(type: "text", nullable: false),
                     description = table.Column<string>(type: "text", nullable: false),
-                    productImage = table.Column<string>(type: "text", nullable: false),
+                    productImage = table.Column<string>(type: "text", nullable: true),
                     SKU = table.Column<Guid>(type: "uuid", nullable: false),
                     quantity = table.Column<int>(type: "integer", nullable: false),
-                    price = table.Column<decimal>(type: "numeric", nullable: false),
+                    basePrice = table.Column<decimal>(type: "numeric", nullable: false),
+                    cgst = table.Column<float>(type: "real", nullable: false),
+                    sgst = table.Column<float>(type: "real", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
                     status = table.Column<bool>(type: "boolean", nullable: false)
@@ -138,6 +158,38 @@ namespace Bootcamp_Project.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    userId = table.Column<int>(type: "integer", nullable: false),
+                    paymentType = table.Column<int>(type: "integer", nullable: false),
+                    addressId = table.Column<int>(type: "integer", nullable: false),
+                    totalAmount = table.Column<decimal>(type: "numeric", nullable: false),
+                    orderStatus = table.Column<int>(type: "integer", nullable: false),
+                    createdDate = table.Column<long>(type: "bigint", nullable: false),
+                    updatedDate = table.Column<long>(type: "bigint", nullable: false),
+                    status = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_order_address_addressId",
+                        column: x => x.addressId,
+                        principalTable: "address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_order_user_userId",
+                        column: x => x.userId,
+                        principalTable: "user",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "paymentMethod",
                 columns: table => new
                 {
@@ -145,6 +197,11 @@ namespace Bootcamp_Project.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     userId = table.Column<int>(type: "integer", nullable: false),
                     paymentTypeId = table.Column<int>(type: "integer", nullable: false),
+                    UpiId = table.Column<string>(type: "text", nullable: false),
+                    AccountNumber = table.Column<string>(type: "text", nullable: false),
+                    CardNumber = table.Column<string>(type: "text", nullable: false),
+                    ExpiryDate = table.Column<string>(type: "text", nullable: false),
+                    CVV = table.Column<string>(type: "text", nullable: false),
                     createdDate = table.Column<long>(type: "bigint", nullable: false),
                     updatedDate = table.Column<long>(type: "bigint", nullable: false),
                     status = table.Column<bool>(type: "boolean", nullable: false)
@@ -220,75 +277,6 @@ namespace Bootcamp_Project.Migrations
                         name: "FK_cartItem_product_productId",
                         column: x => x.productId,
                         principalTable: "product",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "order",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    userId = table.Column<int>(type: "integer", nullable: false),
-                    paymentMethodId = table.Column<int>(type: "integer", nullable: false),
-                    addressId = table.Column<int>(type: "integer", nullable: false),
-                    totalAmount = table.Column<decimal>(type: "numeric", nullable: false),
-                    orderStatus = table.Column<int>(type: "integer", nullable: false),
-                    createdDate = table.Column<long>(type: "bigint", nullable: false),
-                    updatedDate = table.Column<long>(type: "bigint", nullable: false),
-                    status = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_order", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_order_address_addressId",
-                        column: x => x.addressId,
-                        principalTable: "address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_order_paymentMethod_paymentMethodId",
-                        column: x => x.paymentMethodId,
-                        principalTable: "paymentMethod",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_order_user_userId",
-                        column: x => x.userId,
-                        principalTable: "user",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "feedback",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    userId = table.Column<int>(type: "integer", nullable: false),
-                    orderId = table.Column<int>(type: "integer", nullable: false),
-                    rating = table.Column<int>(type: "integer", nullable: false),
-                    comments = table.Column<string>(type: "text", nullable: false),
-                    createdDate = table.Column<long>(type: "bigint", nullable: false),
-                    updatedDate = table.Column<long>(type: "bigint", nullable: false),
-                    status = table.Column<bool>(type: "boolean", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_feedback", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_feedback_order_orderId",
-                        column: x => x.orderId,
-                        principalTable: "order",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_feedback_user_userId",
-                        column: x => x.userId,
-                        principalTable: "user",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -376,24 +364,9 @@ namespace Bootcamp_Project.Migrations
                 column: "productId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_feedback_orderId",
-                table: "feedback",
-                column: "orderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_feedback_userId",
-                table: "feedback",
-                column: "userId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_order_addressId",
                 table: "order",
                 column: "addressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_order_paymentMethodId",
-                table: "order",
-                column: "paymentMethodId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_order_userId",
@@ -458,7 +431,7 @@ namespace Bootcamp_Project.Migrations
                 name: "cartItem");
 
             migrationBuilder.DropTable(
-                name: "feedback");
+                name: "GlobalVariables");
 
             migrationBuilder.DropTable(
                 name: "orderItem");
@@ -479,13 +452,13 @@ namespace Bootcamp_Project.Migrations
                 name: "order");
 
             migrationBuilder.DropTable(
+                name: "paymentMethod");
+
+            migrationBuilder.DropTable(
                 name: "category");
 
             migrationBuilder.DropTable(
                 name: "address");
-
-            migrationBuilder.DropTable(
-                name: "paymentMethod");
 
             migrationBuilder.DropTable(
                 name: "paymentType");

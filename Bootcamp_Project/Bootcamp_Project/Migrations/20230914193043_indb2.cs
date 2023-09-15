@@ -4,7 +4,7 @@
 
 namespace Bootcamp_Project.Migrations
 {
-    public partial class InitialDB : Migration
+    public partial class indb2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -15,8 +15,10 @@ namespace Bootcamp_Project.Service
 
         public CartService(EF_DataContext context, ILogger logger)
         {
+            
             _context = context;
             _logger = logger;
+            _productService = new ProductService(context,logger);
         }
 
         public string AddCartItem(CartItemAddRequest cartItem)
@@ -39,6 +41,7 @@ namespace Bootcamp_Project.Service
                 cart = new Cart();
                 cart.user = user;
                 _context.Carts.Add(cart);
+                _context.SaveChanges();
                 cartId = cart.Id;
                 _logger.LogInformation($"Cart created for user: {user.Id}");
             }
@@ -58,7 +61,7 @@ namespace Bootcamp_Project.Service
 
             // check if the product is already in cart or not
             CartItem alreadyPresentItem = _context.CartItems
-                .FirstOrDefault(p => p.status && p.cart.user.Id == cartItem.userId && p.product.Id == cartItem.productId);
+                .FirstOrDefault(p => p.status && p.cartId == cart.Id && p.productId == cartItem.productId);
             if(alreadyPresentItem != null)
             {
                 return "The product is already added to your cart";
@@ -66,8 +69,8 @@ namespace Bootcamp_Project.Service
 
             // Then create entry in cart item
             CartItem newCartItem = new CartItem();
-            newCartItem.product = product;
-            newCartItem.cart = cart;
+            newCartItem.productId = product.Id;
+            newCartItem.cartId = cart.Id;
             newCartItem.quantity = cartItem.quantity;
             _context.CartItems.Add(newCartItem);
             _context.SaveChanges();
@@ -127,20 +130,59 @@ namespace Bootcamp_Project.Service
             }
             _logger.LogInformation("Cart fetched");
 
-            List<CartItem> cartItems = _context.CartItems.Where(p => p.cart.Id == cart.Id).ToList();
+            List<CartItem> cartItems = _context.CartItems.Where(p => p.cartId == cart.Id).ToList();
+            List<int> prodIds = new List<int>();
+
+            foreach(var item in cartItems)
+            {
+                prodIds.Add(item.productId);
+            }
+            var products = _context.Products.Where(p => prodIds.Contains(p.Id)).ToList();
+            List<ProductCartItemAggResponse> productCartItemAggResponses = new List<ProductCartItemAggResponse>();
+            for (var i=0;i<products.Count; i++)
+            {
+                productCartItemAggResponses.Add(new ProductCartItemAggResponse() { cartItem = cartItems[0], product = products[i] });
+            }
             List<CartItemResponse> cartItemResponse = new List<CartItemResponse>();
-            cartItems.ForEach(
-                cartItem => cartItemResponse.Add(new CartItemResponse()
+            foreach (ProductCartItemAggResponse cartItem in productCartItemAggResponses)
+            {
+                Console.WriteLine(cartItem.cartItem.Id);
+                Console.WriteLine(cartItem.product.description);
+                Console.WriteLine(cartItem.product.name);
+                Console.WriteLine(cartItem.product.basePrice);
+                Console.WriteLine(cartItem.product.quantity);
+                Console.WriteLine(cartItem.cartItem.quantity);
+                Console.WriteLine(_productService.ProductDeliveryPriceForCart(cartItem.product, cartItem.product.basePrice.ToString(), cartItem.cartItem.quantity));
+                Console.WriteLine(_productService.TaxEstimationForProductInCart(cartItem.cartItem, cartItem.cartItem.quantity));
+                cartItemResponse.Add(new CartItemResponse()
                 {
-                    cartItemId = cartItem.Id,
+                    cartItemId = cartItem.cartItem.Id,
                     productDescription = cartItem.product.description,
                     productName = cartItem.product.name,
                     productPrice = cartItem.product.basePrice,
-                    quantity = cartItem.quantity,
-                    totalDeliveryPrice = _productService.ProductDeliveryPriceForCart(cartItem.product, cartItem.product.basePrice.ToString(), cartItem.quantity),
-                    totalTax = _productService.TaxEstimationForProductInCart(cartItem, cartItem.quantity)
-                })
-            );
+                    quantity = cartItem.cartItem.quantity,
+                    totalDeliveryPrice = _productService.ProductDeliveryPriceForCart(cartItem.product, cartItem.product.basePrice.ToString(), cartItem.cartItem.quantity),
+                    totalTax = _productService.TaxEstimationForProductInCart(cartItem.cartItem, cartItem.cartItem.quantity)
+
+                });
+            }
+
+            
+            //Console.WriteLine(cartItems.Count);
+            //foreach(var cartItem in cartItems)
+            //{
+            //    Console.WriteLine(cartItem.product.SKU);
+            //    cartItemResponse.Add(new CartItemResponse()
+            //    {
+            //        cartItemId = cartItem.Id,
+            //        productDescription = cartItem.product.description,
+            //        productName = cartItem.product.name,
+            //        productPrice = cartItem.product.basePrice,
+            //        quantity = cartItem.quantity,
+            //        totalDeliveryPrice = _productService.ProductDeliveryPriceForCart(cartItem.product, cartItem.product.basePrice.ToString(), cartItem.quantity),
+            //        totalTax = _productService.TaxEstimationForProductInCart(cartItem, cartItem.quantity)
+            //    });
+            //}
             _logger.LogInformation("CarItemsResponse list created");
 
             CartResponse cartResponse = new CartResponse();
@@ -149,13 +191,13 @@ namespace Bootcamp_Project.Service
             cartResponse.cartItems = cartItemResponse;
             _logger.LogInformation("CartResponse created");
 
-            foreach (CartItemResponse cartItem in cartResponse.cartItems)
+            foreach (CartItemResponse item in cartResponse.cartItems)
             {
-                cartItem.totalPrice = cartItem.productPrice + cartItem.totalTax + cartItem.totalDeliveryPrice;
-                cartResponse.totalProductAmount += cartItem.productPrice;
-                cartResponse.totalCartAmount += cartItem.totalPrice;
-                cartResponse.totalTaxAmount += cartItem.totalTax;
-                cartResponse.totalDeliveryAmount += cartItem.totalDeliveryPrice;
+                item.totalPrice = item.productPrice + item.totalTax + item.totalDeliveryPrice;
+                cartResponse.totalProductAmount += item.productPrice;
+                cartResponse.totalCartAmount += item.totalPrice;
+                cartResponse.totalTaxAmount += item.totalTax;
+                cartResponse.totalDeliveryAmount += item.totalDeliveryPrice;
             }
             _logger.LogInformation("Total cost details filled");
             return cartResponse;
@@ -172,7 +214,7 @@ namespace Bootcamp_Project.Service
         {
             _logger.LogInformation("Inside FetchProductByCartItem");
             return _context.Products
-                .FirstOrDefault(p => p.status && p.Id == cartItem.product.Id);
+                .FirstOrDefault(p => p.status && p.Id == cartItem.productId);
         }
     }
 }

@@ -15,6 +15,6 @@ namespace Bootcamp_Project.EF_Core.GlobalVariables
         public string Value { get; set; }
 
         [DefaultValue(true)]
-        public bool Status { get; set; }
+        public bool Status { get; set; } = true;
     }
 }

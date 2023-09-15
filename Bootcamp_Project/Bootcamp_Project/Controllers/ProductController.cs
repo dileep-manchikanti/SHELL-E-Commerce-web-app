@@ -67,7 +67,7 @@ namespace Bootcamp_Project.Controllers
             try
             {
                 ProductDetailResponse productDetail = productService.GetProductDetail(productId);
-                if (productDetail != null)
+                if (productDetail == null)
                 {
                     return NotFound(new { errorCode = 404, errorMessage = "Product details not available" });
                 }

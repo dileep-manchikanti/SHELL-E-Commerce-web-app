@@ -11,7 +11,7 @@ namespace Bootcamp_Project.EF_Core.ProductDetails
         public int Id { get; set; }
 
         [Required]
-        public virtual Category category { get; set; }
+        public int categoryId { get; set; }
 
         [Required]
         public string name { get; set; }
@@ -40,6 +40,6 @@ namespace Bootcamp_Project.EF_Core.ProductDetails
         public long updatedDate { get; set; }
 
         [DefaultValue(true)]
-        public bool status { get; set; }
+        public bool status { get; set; } = true;
     }
 }

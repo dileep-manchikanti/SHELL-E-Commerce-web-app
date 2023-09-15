@@ -30,7 +30,7 @@ namespace Bootcamp_Project.Models.Products
             this.productName = product.name;
             this.productDescription = product.description;
             this.productImage = product.productImage;
-            this.categoryId = product.category.Id;
+            this.categoryId = product.categoryId;
             this.SKU = product.SKU;
             this.quantity = product.quantity;
             this.basePrice = product.basePrice;

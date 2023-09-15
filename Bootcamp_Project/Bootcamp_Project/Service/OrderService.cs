@@ -39,8 +39,11 @@ namespace Bootcamp_Project.Service
             order.user = user;
             order.totalAmount = request.totalAmount;
             order.orderStatus = OrderStatus.Initiated;
+            _logger.LogInformation("before adding");
             _context.Orders.Add(order);
+            _logger.LogInformation("after adding");
             _context.SaveChanges();
+            _logger.LogInformation("saved");
 
             AddOrderItems(cart, order);
             _logger.LogInformation("Order successfully created");
@@ -49,12 +52,12 @@ namespace Bootcamp_Project.Service
 
         private void AddOrderItems(Cart cart, Order order)
         {
-            List<CartItem> cartItems = _context.CartItems.Where(p => p.cart.Id == cart.Id).ToList();
+            List<CartItem> cartItems = _context.CartItems.Where(p => p.cartId == cart.Id && p.status==true).ToList();
             List<OrderItem> orderItems = new List<OrderItem>();
             cartItems.ForEach(cartItem => orderItems.Add(new OrderItem()
             {
-                order = order,
-                product = cartItem.product,
+                orderId = order.Id,
+                productId = cartItem.productId,
                 quantity = cartItem.quantity
             }));
 
@@ -68,6 +71,8 @@ namespace Bootcamp_Project.Service
         public int UpdateAddressInOrder(OrderAddressUpdate addressUpdate)
         {
             _logger.LogInformation("Inside UpdateAddressInOrder");
+            Console.WriteLine(addressUpdate.addressId);
+            Console.WriteLine(addressUpdate.orderId);
             Order order = _context.Orders.FirstOrDefault(p => p.status && p.Id == addressUpdate.orderId);
             if(order == null)
             {
@@ -80,7 +85,7 @@ namespace Bootcamp_Project.Service
                 throw new BadHttpRequestException("AddressId is invalid");
             }
 
-            order.address = address;
+            order.addressId = address.Id;
             _context.Orders.Update(order);
             _context.SaveChanges();
 
@@ -97,7 +102,7 @@ namespace Bootcamp_Project.Service
             }
 
             PaymentType paymentType = _context.PaymentTypes.FirstOrDefault(p => p.status && p.Id == paymentUpdate.paymentTypeId);
-
+            //_logger.LogInformation($"paymenttype : {paymentType}, paymentMethod : {paymentType.paymentMethod}");
             order.paymentType = paymentType.paymentMethod;
             _context.Orders.Update(order);
             _context.SaveChanges();

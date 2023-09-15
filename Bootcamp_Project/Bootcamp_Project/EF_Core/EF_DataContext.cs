@@ -94,6 +94,7 @@ namespace Bootcamp_Project.EF_Core
                     }
                 }
             }
+            Console.WriteLine("end");
             return base.SaveChanges();
         }
 
